@@ -2,4 +2,4 @@
 
 Source code for Pico-8 game https://unikotoast.itch.io/buns-bunny-survivor
 
-This is my first attmept at game dev so do not expect a pefect code.
+This is my first attmept at game dev so do not expect a perfect code.

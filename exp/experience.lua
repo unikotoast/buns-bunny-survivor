@@ -57,7 +57,7 @@ end
 
 
 function level_up()
-    sfx(20)
+            sfx(16)
     if (show_lvlup) return
     level += 1
     if (level == 1) then

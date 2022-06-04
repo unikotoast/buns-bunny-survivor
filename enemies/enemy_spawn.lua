@@ -60,6 +60,7 @@ end
 function setup_enemy(enemy, life)
 	if (enemy.is_bomb) then
 		enemy.death_item = function()
+   			sfx(12)
 			add_explosion(enemy.pos.x,enemy.pos.y,25,8,true)
 			enemy.exploded = true
 			aoe_damage(enemy.pos.x,enemy.pos.y, 26,100,true)
@@ -73,7 +74,6 @@ function setup_enemy(enemy, life)
 end
 
 function kill_enemy(enemy)
-	sfx(12)
 	if (enemy.death_item) then
 		enemy.death_item(enemy.pos.x,enemy.pos.y) 
 	else

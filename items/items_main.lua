@@ -1,6 +1,7 @@
 items = {}
 
-function use_peach(self)
+function use_peach(self) 
+   			sfx(13)
 	--add_crosses(11)
 	dash_cooldown = dash_cooldown_max
 	playerhp += 1
@@ -11,12 +12,14 @@ function use_peach(self)
 end
 
 function use_carrot(self)
+   			sfx(14)
 	p_energy += 3
 	if (p_energy > p_energy_max) p_energy = p_energy_max
 	delete_item(self)
 end
 
 function use_magnet(self)
+   			sfx(15)
 	magnet_effect = true
 	for gem in all(gems) do
 		gem.picked = true

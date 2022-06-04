@@ -40,7 +40,7 @@ function draw_manual()
 
 print("bunny survivor",-26,-36+ay,14)
 print("MADE BY unikotoast",-62, 56+ay,6)
-print("0.8",52, 56+ay,6)
+print("1.0",52, 56+ay,6)
     -- pset(-26,-40+ay,8)
     -- pset(-28,-40+ay,8)
 
@@ -80,7 +80,6 @@ function skull()
 		death_item = start_game,
 		life_time = 9999,
 		no_teleport = true,
-		can_attack = false,
 		pos = {x=0, y=34}
 	}
 end

@@ -4,6 +4,7 @@ game_won = false
 game_over_pause = 90
 
 function game_lost()
+   	sfx(17)
 	game_over = true
 	show_lvlup = true
 
@@ -11,6 +12,7 @@ function game_lost()
 end
 
 function win_game()
+	music(0)
 	game_won = true
 	game_over = true
 	show_lvlup = true

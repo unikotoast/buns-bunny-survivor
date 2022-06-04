@@ -130,7 +130,7 @@ end
 		end
 	end
 	if (is_moving) then		
-		sspr(sprite_x,p_sprite,9, 11, playerx,playery, 9, 11, playerflip, false)
+		sspr(sprite_x,p_sprite,9, 11, playerx,playery, 9, 11, playerflip)
 		player_animation+=1
 		if (player_animation<6) then 
 			sprite_x = 8
@@ -140,7 +140,7 @@ end
 			player_animation = 0
 		end
 	else
-		sspr(0,p_sprite,8, 11, playerx,playery, 8, 11, playerflip, false)
+		sspr(0,p_sprite,8, 11, playerx,playery, 8, 11, playerflip)
 	end
 			pal() 
 	if (player_damaged > 0) then

@@ -30,6 +30,8 @@ function lich_attack_ice(enemy)
 			if (not enemy.red_attack) then
 				ph.x = playerx
 				ph.y = playery
+			else
+   				sfx(22)
 			end
 		    local pt = angle_move(enemy.pos.x, enemy.pos.y, ph.x, ph.y, 256)
 

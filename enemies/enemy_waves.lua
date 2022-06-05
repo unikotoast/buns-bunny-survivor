@@ -17,7 +17,7 @@ function random_waves()
 		end
 	end
 	lich_wave(150,1)
-	bats_wave(180, 40, 0,true,false)
+	bats_wave(180, 40, 0,true)
 	lich_wave(260,2)
 	skeletons_wave(300, 12, 0, true)
 	for i = 0,12 do
@@ -39,22 +39,23 @@ function random_waves()
 	end
 	
 	wave_jellies = function (time)
-		jellies_acid_wave(time, 35+enemy_level*2, .7)
+		jellies_acid_wave(time, 20+enemy_level*3, 1)
 	end
 	
 	wave_shrooms = function (time)
-		mushroom_wave(time, 8+enemy_level*4, 1)
+		mushroom_wave(time, 10+enemy_level*4, 1)
 	end
 	
 	wave_bats_circle = function (time)
 		for i=0,2+enemy_level/4 do
-			bats_wave(time+i*7, 12, 0,true,false)
+			bats_wave(time+i*7, 12, 0,true)
 		end
+		if (enemy_level > 8) crystal_wave(time, flr(enemy_level/2))
 	end
 	
 	wave_bats = function (time)
 		bats_wave(time,30+enemy_level*4,1)
-		if (enemy_level > 6) bats_wave(time+10,enemy_level*2,.5)
+		if (enemy_level > 6) bats_wave(time+15,enemy_level*3,.3)
 	end
 
 	wave_skeletons = function (time)
@@ -64,9 +65,9 @@ function random_waves()
 local t = 0
 	for i=2,19 do
 		t += .5*i
-		bunny(i*30+rnd(15))
+		bunny(i*50+rnd(25))
 		crystal_wave((i-1)*60+rnd(30),1)
-		bats_wave(i*60+rnd(60), 10+enemy_level*2, 0,false,true)
+		bats_wave(i*60+rnd(60), 10, 0,false,true)
 
 		local bombs = 1
 		if (i > 7) bombs = 2

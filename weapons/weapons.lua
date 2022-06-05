@@ -22,14 +22,15 @@ ws = {
 		playeracc -= .006
 		p_energy_max +=1 end},
 
-	{sprite = 73, name = "cARROT cAKE \f2-35% speed", info = "full heal +1 carrot +1 heart", use = function () 
-		playeracc -= .016
+	{sprite = 73, name = "cARROT cAKE \f2-30% speed", info = "full heal +1 carrot +1 heart", use = function () 
+		playeracc -= .012
 		playerhp_max +=1
 		p_energy_max +=1
 		playerhp = playerhp_max end},
 
-	{sprite = 77, name = "hASTE", info = "up attack speed", use = function (self) 
+	{sprite = 77, name = "hASTE", info = "up attack and move speed", use = function (self) 
 		if (w_attack_speed == 5) del(ws, self)
+		playeracc += .003
 		w_attack_speed +=1 end},
 
 	{sprite = 78, name = "sWIFTNESS LVL", info = "faster movement", use = function (self) 
@@ -55,27 +56,19 @@ ws = {
 		 end},
 
 {sprite=66, 
-		name="sPLIT aTTACK \f2-0.5 carrot", info="shoot 1 carrot behind ", use =  function(self) 
+		name="sPLIT aTTACK \f2-0.5 carrot", info="shoot more carrots behind ", use =  function(self) 
 		decrease_max_carrots()
 		--carrot_energy +=2
-
-		del(ws, self)
-		back_shot = true end},
-
-{sprite=89, 
-		name="dOUBLE sHOT \f2-0.5 carrot", info="shoot 2 carrots ", use =  function(self) 
-		decrease_max_carrots()
-	--	carrot_energy +=3
-		del(ws, self)
-		bullet_double =true 
+		split_shot += 1 
+		if (split_shot == 2) del(ws, self)
 		end},
 
 {sprite=93, 
-		name="cROSSFIRE \f2-0.5 carrot", info="every 5th shot ", use =  function(self) 
-		bullet_explosion += 1
+		name="cROSSFIRE \f2-0.5 carrot", info="chance to shoot 4 carrots ", use =  function(self) 
+		carrot_crossfire += 1
 		decrease_max_carrots()
 	--	carrot_energy +=3
-		if (bullet_explosion == 3) del(ws, self) 
+		if (carrot_crossfire == 3) del(ws, self) 
 		end},
 
 {sprite=92, 
@@ -87,7 +80,7 @@ ws = {
 
 
 {sprite=91, 
-		name="aTTRACTOR", info="increase pick up range", use =  function() magnet_area+=8 end},
+		name="aTTRACTOR", info="increase pick up range", use =  function() magnet_area+=12 end},
 
 --{sprite=126, 
 --		name="aRCANE fOCUS", info="+200% mp regen while standing", use =  function(self) 
@@ -110,7 +103,7 @@ ws = {
 		end},
 
 {sprite=121, 
-		name="fLAME cOAT \f2-1 heart", info="damage nearby enemies ", use =  function() 
+		name="rING oF fLAME \f2-1 heart", info="damage nearby enemies ", use =  function() 
 		ring_of_fire += 1
 		decrease_max_hp()
 		end},

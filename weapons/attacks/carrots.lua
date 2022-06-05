@@ -2,10 +2,10 @@ knife_rounds = 1
 
 bullet_tick = 0
 
-bullet_explosion = 0
+carrot_crossfire = 0
 w_shuriken = 0
-bullet_double = false
-back_shot = false
+--bullet_double = false
+split_shot = 0
 carrot_splash = 0
 
 cloud_attack = false
@@ -40,13 +40,8 @@ function throw_knife()
 			knife_sprite = 100
 		end
 
-		if (w_shuriken == 1) then
-			local ang = playerang +rnd({-.03,.03})
-			make_bullet(ang, 125)
-		end
-
-		if (w_shuriken > 1) then
-			local sh = w_shuriken - 1
+		if (w_shuriken > 0) then
+			local sh = w_shuriken
 			for i=0,sh*2 do
 				if (i ~= sh) then
 					local ang = playerang -.03*sh + i *.03
@@ -55,13 +50,13 @@ function throw_knife()
 			end
 		end
 
-		if (back_shot) then
-			if (bullet_double) then
-				make_bullet(playerang + .48)
-				make_bullet(playerang + .52)
-			else
-				make_bullet(playerang + .5)
-			end
+		if (split_shot >= 1) then
+			make_bullet(playerang + .5)
+		end
+
+		if (split_shot == 2) then
+			make_bullet(playerang + .25)
+			make_bullet(playerang + .75)
 		end
 
 		bullet_tick += 1
@@ -69,20 +64,15 @@ function throw_knife()
 			bullet_tick= 1
 		end
 
-		if (bullet_double) then
-			make_bullet(playerang -.02)
-			make_bullet(playerang +.02)
-		else
-			make_bullet(playerang)
-		end
+		make_bullet(playerang)
 
-		if(bullet_explosion > 0) then
-			if(bullet_tick%(4-bullet_explosion) == 0) then
-				for i=0,3 do
-					make_bullet(.125+i*.25)
-				end
+	if(carrot_crossfire > 0) then
+		if(bullet_tick%(4-carrot_crossfire) == 0) then
+			for i=0,3 do
+				make_bullet(playerang + .125+i*.25)
 			end
 		end
+	end
 	
 	end
 
@@ -111,7 +101,7 @@ function make_bullet(angle,shuriken,x,y,id,pierce)
 
 		local dmg = carrot_damage+5*w_damage
 
-		if (shuriken) dmg = 5+2*w_damage
+		if (shuriken) dmg = 5+2*w_damage+3*w_shuriken
 
 			local k = {
 				x = sx, 
@@ -164,7 +154,7 @@ function move_bullets()
 
 			if (b.is_carrot and carrot_splash > 0) then
 				add_explosion(b.x,b.y,4 + carrot_splash*3,2)
-				aoe_damage(b.x,b.y, 12 + carrot_splash*3,carrot_damage/4+carrot_splash*2)
+				aoe_damage(b.x,b.y, 10 + carrot_splash*3,carrot_damage/3+carrot_splash*3)
 			end
 
 		end

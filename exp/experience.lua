@@ -37,13 +37,6 @@ function get_exp()
     end
 end
 
---function draw_exp_ui()
--- print(""..playerhp,playerx+42,playery-52,7)
--- print("max"..max_exp,playerx+42,playery-46,7)
---
---end
-
-
 function move_gems()
     for gem in all(gems) do
         if (gem.picked) then
@@ -56,13 +49,13 @@ end
 
 
 function level_up()
-            sfx(16)
+    sfx(16)
     if (show_lvlup) return
     level += 1
     if (level == 1) then
         max_exp = 10
     else
-    max_exp *= 1.2
+        max_exp = min(max_exp*1.2,75)
     end
     exp = 0
     if (p_energy < p_energy_max) p_energy = p_energy_max
@@ -70,6 +63,11 @@ function level_up()
         playerhp_max +=1
         p_energy_max +=1
     end
+
+      --  for i=1,30 do
+      --          add_particle(playerx-58+(playerhp_max-2)*8+rnd(12),playery+54 +rnd(12), rnd({14,15}), i*3)
+      --  end
+
     lvlup_txt = 148
     lvlup_speed = 10
     lvlup_speed_reverse = false

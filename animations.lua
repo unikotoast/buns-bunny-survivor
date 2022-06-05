@@ -50,7 +50,7 @@ function animate_animations()
 
 		if (a) then
 			if (a.sprite) then
-				spr(a.sprite + a.frame, a.x, a.y, 1,1,a.flip, false)
+				spr(a.sprite + a.frame, a.x, a.y, 1,1,a.flip)
 			end
 
 			a.step += 1

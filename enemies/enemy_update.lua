@@ -56,12 +56,12 @@ function draw_enemy_object(e)
 				elseif (anim_2frames_dur >=16) then
 					anim_2frames_dur=0
 				end
-					sspr(ssx, e.sy, e.sw, e.sh, e.pos.x-5, e.pos.y-5, e.sw, e.sh, e.is_flipped, false)
+					sspr(ssx, e.sy, e.sw, e.sh, e.pos.x-5, e.pos.y-5, e.sw, e.sh, e.is_flipped)
 		else
 				local an = 0
 				if (anim_2frames_dur <8) an = 1
 				if (anim_2frames_dur >=16) anim_2frames_dur=0
-				spr(e.sprite+an,e.pos.x,e.pos.y,  1, 1, e.is_flipped, false)
+				spr(e.sprite+an,e.pos.x,e.pos.y,  1, 1, e.is_flipped)
 		end
 	end
 
@@ -150,12 +150,9 @@ function move_e(e)
 	if not e.follow and dst(playerx,playery,e.pos.x,e.pos.y) < e.aoe then
 		if (e.is_bomb or e.skull) then
 			kill_enemy(e)
-		elseif (not e.is_shine and not e.is_crystal and e.death_item) then
+		elseif (not e.is_shine and e.death_item) then
 			remove_enemy(e)
-			for i=0,7 do
-				local p = random_outside_point(i/8,20)
-				make_gem(p.x,p.y)
-			end
+			make_gems()
 		elseif (not dash and e.no_collision) then
 			damage_player(e.dmg)
 			remove_bullet(e)
@@ -169,6 +166,13 @@ function move_e(e)
 			playery += (playery - e.pos.y)/15
 			damage_player(e.dmg)
 		end
+	end
+end
+
+function make_gems(x,y)
+	for i=0,11 do
+		local p = random_outside_point(i/11,20,x,y)
+		make_gem(p.x,p.y)
 	end
 end
 

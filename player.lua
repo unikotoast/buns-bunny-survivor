@@ -17,7 +17,7 @@ beam_animation= .1
 player_damaged_dash = false
 
 function damage_player(dmg)
-	if (dmg and player_damaged == 0) then
+	if (dmg and dmg > 0 and player_damaged == 0) then
 		sfx(0)
 		player_damaged_dash = false
 		player_damaged = 80

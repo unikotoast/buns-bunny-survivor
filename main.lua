@@ -62,6 +62,8 @@ function _draw()
 	draw_text()
 --print("kb"..stat(0),(playerx)-64,(playery)-57,0)
 --print("∧"..flr(100*stat(1)).."%",(playerx)-64,(playery)-50,0)
+--print(""..playerhp,playerx+42,playery-52,7)
+--print("max"..max_exp,playerx+42,playery-46,7)
 end
 
 timer = 0
@@ -81,7 +83,7 @@ end
 function draw_timer()
 	local minutes = flr(timer / 60)
 	local seconds = flr(timer  % 60)
- 	print(minutes..":"..seconds,(playerx),(playery)-54,6)
+ 	print(minutes..":"..seconds,(playerx-2),(playery)-54,6)
 end
 
 

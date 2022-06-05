@@ -29,8 +29,7 @@ function bats_wave(start_time, num, interval, circle, swarm)
 			death_sprite = 70,
 			speed = speed, 
 			hp = 15,
-			draw_black = true,
-			dmg = 2
+			draw_black = true
 	}  end,
 		start_time,
 		interval,
@@ -119,8 +118,7 @@ function skeletons_wave(start_time, num, interval, circle)
 		sprite = 25,
 		death_sprite = 86,
 		speed = 0.20, 
-		hp = 15+enemy_level*5,
-		dmg = 7
+		hp = 15+enemy_level*5
 	}  end,
 		start_time,
 		interval,
@@ -135,10 +133,9 @@ function crystal_wave(start_time, num, interval)
 		sprite = 254,
 		death_sprite = 173,
 		speed = 0.15, 
-		hp = 50+enemy_level*20,
-		dmg = 4,
+		hp = 1+enemy_level*30,
 		is_crystal = true,
-		death_item = rnd({make_peach,make_magnet})
+		death_item = rnd({make_peach,make_magnet,make_gems})
 	}  end,
 		start_time,
 		interval,
@@ -153,8 +150,7 @@ function spirit_wave()
 		speed = .3, 
 		hp = 10,
 		dmg = 2,
-		life_time = 600,
-		dmg = 1
+		life_time = 600
 	}
 end
 
@@ -171,8 +167,7 @@ function lich_wave(start_time, num)
 		can_attack = true,
 		attack = lich_attack_ice,
 		spawn_count = 9,
-		spawn = spirit_wave,
-		dmg = 1
+		spawn = spirit_wave
 	} end,
 		start_time,
 		0,
@@ -186,13 +181,12 @@ function demon_wave(start_time)
 		sprite = -1,
 		death_sprite = 244,
 		speed = 0.1, 
-		hp = 1500, 
+		hp = 1900, 
 		sx = 64,
 		sy = 64,
 		sw = 19,
 		sh = 17,
 		next_sx = 19,
-		dmg = 20,
 		red_attack = true,
 		can_attack = true,
 		timer = 0,

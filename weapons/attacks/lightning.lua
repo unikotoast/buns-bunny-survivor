@@ -17,7 +17,7 @@ function update_lightning()
 	if (w_lightning > 0) then
 		w_lightning_time -= 1
 		if (w_lightning_time <= 0) then
-			w_lightning_time = 200
+			w_lightning_time = 200 - w_attack_speed*25
 			cloud.sprite = 37
 			attack_lightning()
 		elseif (w_lightning_time == 55) then
@@ -29,6 +29,7 @@ end
 
 
 function attack_lightning()
+		--sfx(18)
 		local x1 = cloud.pos.x
 		local y1 = cloud.pos.y
 		

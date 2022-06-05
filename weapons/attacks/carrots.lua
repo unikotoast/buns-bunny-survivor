@@ -13,17 +13,17 @@ cloud_attack = false
 drill_lvl = 1
 
 carrot_damage = 10
-carrot_energy = .5
+--carrot_energy = .5
 
 w_carrot_cd = 0
 
 bullet_carrots ={}
 
 function throw_knife()
-	if (w_carrot_cd == 0  and p_energy >= carrot_energy) then
+	if (w_carrot_cd == 0  and p_energy >= .5) then
 		energy_cd = 50
 		w_carrot_cd = max(30 - w_attack_speed*4,5)
-		p_energy -= carrot_energy
+		p_energy -= .5
 
 
 		local knife_sprite = 102
@@ -55,9 +55,13 @@ function throw_knife()
 			end
 		end
 
-
 		if (back_shot) then
-			make_bullet(playerang + .5)
+			if (bullet_double) then
+				make_bullet(playerang + .48)
+				make_bullet(playerang + .52)
+			else
+				make_bullet(playerang + .5)
+			end
 		end
 
 		bullet_tick += 1

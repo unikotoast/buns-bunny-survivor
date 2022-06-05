@@ -4,16 +4,16 @@ p_energy_timer_max = 40
 
 p_energy_regen = 1
 
-regen_focus = 0
+--regen_focus = 0
 
 function cooldown_update()
     if (energy_cd > 0) energy_cd -= 1
 
-      if (w_arcane and player_focus < 30) then
-        regen_focus = 1.5
-      else
-        regen_focus = 0
-      end
+   --   if (w_arcane and player_focus < 30) then
+   --     regen_focus = 1.5
+   --   else
+   --     regen_focus = 0
+   --   end
 
     if (energy_cd == 0 and p_energy < p_energy_max)  then
       p_energy_timer -= 1

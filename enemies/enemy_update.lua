@@ -34,8 +34,8 @@ function draw_enemy_object(e)
 		for i = 0,15 do 
 			pal(i, 14) 
 		end
-	else
-		if (e.max_speed) e.speed = min(e.max_speed, e.speed*1.05)
+--	else
+--		if (e.max_speed) e.speed = min(e.max_speed, e.speed*1.05)
 	end
 
 	if (e.draw_black) then
@@ -80,7 +80,7 @@ end
 
 function remove_bullet(e)
 	del(enemy_bullets,e)
-	add_timed_anim(e.death_sprite,e.pos.x,e.pos.y,3,12)
+	--add_timed_anim(e.death_sprite,e.pos.x,e.pos.y,3,12)
 end
 
 function move_enemies()

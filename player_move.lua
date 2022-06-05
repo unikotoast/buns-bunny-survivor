@@ -17,7 +17,7 @@ dash_cooldown_max = 180
 magnet_area = 8
 
 player_speed = 0
-player_focus = 0
+--player_focus = 0
 
 function move_player()
 	interact(playerx,playery)
@@ -40,9 +40,9 @@ function move_player()
 
 	is_moving = false
 
-	if(btn(4,1)) then
-		level_up()
-	end
+	--if(btn(4,1)) then
+	--	level_up()
+	--end
 	if(btn(5)) then
 	--	fire_slash(w_slash)
 		throw_knife()
@@ -104,7 +104,7 @@ function move_player()
 		--	player_focus += 1
 		--end
 		player_speed += playeracc
-	else
+--	else
 		--if (player_focus > 0) then
 		--	player_focus -= 1
 		--end
@@ -112,11 +112,11 @@ function move_player()
 
 	if(btnp(4) and ((dash_cooldown >= dash_cooldown_max))) then
 		dash_id = rnd(1)
-		player_focus = min(100, player_focus + 60)
-		player_damaged = 30
+--		player_focus = min(100, player_focus + 60)
+		player_damaged = 45
 		player_damaged_dash = true
 		dash = true
-			dash_cooldown = 0
+		dash_cooldown = 0
 		player_speed=.6
 		player_speed*=20
 	

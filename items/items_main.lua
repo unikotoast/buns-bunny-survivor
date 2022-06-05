@@ -2,19 +2,20 @@ items = {}
 
 function use_peach(self) 
    			sfx(13)
+	player_damaged = 80
+	player_damaged_dash = true
 	--add_crosses(11)
 	dash_cooldown = dash_cooldown_max
 	playerhp += 1
-	p_energy += 5
 	if (playerhp > playerhp_max) playerhp = playerhp_max
-	if (p_energy > p_energy_max) p_energy = p_energy_max
 	delete_item(self)
 end
 
 function use_carrot(self)
-   			sfx(14)
-	p_energy += 3
-	if (p_energy > p_energy_max) p_energy = p_energy_max
+   	sfx(14)
+   	if (p_energy < p_energy_max) p_energy = p_energy_max
+	p_energy += 1
+--	if (p_energy > p_energy_max) p_energy = p_energy_max
 	delete_item(self)
 end
 

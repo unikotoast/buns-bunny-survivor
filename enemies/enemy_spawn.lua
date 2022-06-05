@@ -67,7 +67,7 @@ function setup_enemy(enemy, life)
 		end
 	end
 	enemy.frame = 2
-	enemy.max_speed = enemy.speed
+--	enemy.max_speed = enemy.speed
 	enemy.aoe=8
 	enemy.pos=point(0,0)
 	if (not enemy.life_time) enemy.life_time = life or 3600
@@ -80,7 +80,7 @@ function kill_enemy(enemy)
 		if (enemy.spawn) then
 			for i = 1, enemy.spawn_count do
 				local e = enemy:spawn()
-				e.max_speed = e.speed
+--				e.max_speed = e.speed
 				e.bullet_id = enemy.bullet_id
 				e.aoe=6
 				e.pos=point(enemy.pos.x,enemy.pos.y)

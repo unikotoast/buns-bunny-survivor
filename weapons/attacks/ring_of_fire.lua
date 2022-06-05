@@ -6,7 +6,7 @@ function ring_fire_damage()
 		ring_of_fire_tick+=1
 		if (ring_of_fire_tick == 10) then
 			ring_of_fire_tick = 0
-			aoe_damage(playerx,playery, 15 + 4* ring_of_fire,.8+w_damage/5+ring_of_fire/3)
+			aoe_damage(playerx,playery, 16 + 4* ring_of_fire,.8+w_damage/5+ring_of_fire/3)
 		end
 	end
 

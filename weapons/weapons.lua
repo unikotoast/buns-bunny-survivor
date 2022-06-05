@@ -9,19 +9,24 @@ function decrease_max_carrots()
 	p_energy_max -=.5
 end
 
-
 ws = {
 
-	{sprite = 52, name = "bURGER", info = "+1 heart \f2-15% move speed", use = function() 
+	{sprite = 52, name = "cARROT bURGER \f2-15% speed", info = "+1 heart", use = function() 
 		playeracc -= .006
 		playerhp_max +=1 end},
 
 	{sprite = 74, name = "dAMAGE", info = "up damage", use = function () 
 		w_damage +=1 end},
 
-	{sprite = 76, name = "cARROT pARFAIT", info = "+1 carrot \f2-15% move speed", use = function () 
+	{sprite = 76, name = "cARROT pARFAIT \f2-15% speed", info = "+1 carrot", use = function () 
 		playeracc -= .006
 		p_energy_max +=1 end},
+
+	{sprite = 73, name = "cARROT cAKE \f2-35% speed", info = "full heal +1 carrot +1 heart", use = function () 
+		playeracc -= .016
+		playerhp_max +=1
+		p_energy_max +=1
+		playerhp = playerhp_max end},
 
 	{sprite = 77, name = "hASTE", info = "up attack speed", use = function (self) 
 		if (w_attack_speed == 5) del(ws, self)
@@ -29,7 +34,7 @@ ws = {
 
 	{sprite = 78, name = "sWIFTNESS LVL", info = "faster movement", use = function (self) 
 		w_move_speed += 1
-		if (w_move_speed == 3) del(ws, self)
+		if (w_move_speed == 4) del(ws, self)
 		playeracc += .008 end},
 
 --{sprite=127, 
@@ -62,7 +67,6 @@ ws = {
 		decrease_max_carrots()
 	--	carrot_energy +=3
 		del(ws, self)
-		carrot_damage -= 3
 		bullet_double =true 
 		end},
 
@@ -120,7 +124,7 @@ ws = {
 --
 --}
 {sprite=202, 
-		name="mAGIC wATERING", info="+30% mp regen \f2-15% move speed", use =  function() 
+		name="mAGIC wATERING \f2-15% speed", info="+30% mp regen", use =  function() 
 		p_energy_timer_max -= 7
 		playeracc -= .006
 		end}

@@ -20,7 +20,7 @@ function damage_player(dmg)
 	if (dmg and player_damaged == 0) then
 		sfx(0)
 		player_damaged_dash = false
-		player_damaged = 60
+		player_damaged = 80
 		playerhp -= 1
 		shake = 8
 		if (playerhp <= 0) game_lost()
@@ -31,6 +31,9 @@ function draw_player()
 if ( game_over and not game_won) then
 	return
 end
+	if (player_damaged == 0) then
+		player_damaged_dash = false
+	end
 	local p_sprite = 40
 	if (show_lvlup) then
 
@@ -180,11 +183,12 @@ draw_hair=function(obj,facing)
     	local last={x=obj.x+2-facing,y=obj.y+3}
     	local clr = 14
     	for i=1,5 do
-    		if (dash_cooldown  <   (dash_cooldown_max - ((dash_cooldown_max /6)*i) )) then
+    		if (player_damaged_dash or dash_cooldown  <   (dash_cooldown_max - ((dash_cooldown_max /6)*i) )) then
     			clr = 7
     		else
     			clr = 14
     		end
+
     			local h =obj.hair[i]
     	    h.x+=(last.x-h.x)/2
     	    h.y+=(last.y-h.y)/2

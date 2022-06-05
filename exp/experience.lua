@@ -29,7 +29,6 @@ end
 
 function get_exp()
     exp_total += 1
-    if (p_energy > p_energy_max) p_energy = p_energy_max
     sfx(8)
     if (p_energy_max <= 0) exp += 5
     exp +=1
@@ -66,7 +65,7 @@ function level_up()
     max_exp *= 1.2
     end
     exp = 0
-    p_energy = p_energy_max
+    if (p_energy < p_energy_max) p_energy = p_energy_max
     if (level % 5 == 0) then
         playerhp_max +=1
         p_energy_max +=1

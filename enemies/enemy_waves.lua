@@ -17,7 +17,9 @@ function random_waves()
 		end
 	end
 	lich_wave(150,1)
+	bats_wave(180, 40, 0,true,false)
 	lich_wave(260,2)
+	skeletons_wave(300, 12, 0, true)
 	for i = 0,12 do
 		lich_wave(380+i*5, 1)
 	end

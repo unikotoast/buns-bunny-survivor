@@ -157,14 +157,16 @@ function draw_player_bars()
 	end
 	
 	local carrot = 212
-	for i=0,p_energy_max-1+.5 do
+	local max = p_energy_max-.5
+	if (p_energy > p_energy_max) max = p_energy-.5
+	for i=0,max do
 		if (i >= p_energy) then
 			carrot = 214
 		end
 		if (p_energy-i==.5) then
 			carrot = 213
 		end
-		if (i == p_energy_max-1+.5) then
+		if (i == max) then
 			if (p_energy_max%1 ==.5) then
 				carrot = 198
 				if (p_energy-p_energy_max==0) then

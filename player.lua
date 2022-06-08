@@ -19,7 +19,6 @@ player_damaged_dash = false
 function damage_player(dmg)
 	if (dmg and dmg > 0 and player_damaged == 0) then
 		sfx(0)
-		player_damaged_dash = false
 		player_damaged = 80
 		playerhp -= 1
 		shake = 8
@@ -68,7 +67,7 @@ end
 				 	xx = 2
 					pal() 
 				end
-				sspr(111,96,18, 11, playerx-4-xx,playery+sin(t()+i/3), 18, 11, playerflip, false)
+				sspr(111,96,18, 11, playerx-4-xx,playery+sin(t()+i/3), 18, 11, playerflip)
 			end
 			return
 	end
@@ -159,9 +158,7 @@ end
 
 
 
- obj = {}
-    obj.x = 0
-    obj.y = 0
+ obj = {x=0,y=0}
     facing = 1
 
 function setup_hair()

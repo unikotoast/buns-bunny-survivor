@@ -25,8 +25,6 @@ function cooldown_update()
 end
 
 
-
-
   if (w_carrot_cd > 0) then
     w_carrot_cd -= 1
   end
@@ -40,7 +38,8 @@ function draw_bullets()
 end
 
 
-function deal_damage(enemy, dmg)
+function deal_damage(enemy, dmg,no_sound)
+  if (not no_sound) sfx(rnd({4,5}))
   enemy.hp -=dmg
   if (enemy.hp <= 0) then
     kill_enemy(enemy)

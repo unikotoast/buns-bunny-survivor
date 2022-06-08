@@ -2,7 +2,7 @@ knife_rounds = 1
 
 bullet_tick = 0
 
-carrot_crossfire = 0
+w_attack_speed = 0
 w_shuriken = 0
 --bullet_double = false
 split_shot = 0
@@ -16,15 +16,15 @@ carrot_damage = 10
 --carrot_energy = .5
 
 w_carrot_cd = 0
+w_carrot_cd_max = 30
 
 bullet_carrots ={}
 
 function throw_knife()
 	if (w_carrot_cd == 0  and p_energy >= .5) then
 		energy_cd = 50
-		w_carrot_cd = max(30 - w_attack_speed*4,5)
+		w_carrot_cd = max(w_carrot_cd_max - w_attack_speed*4,5)
 		p_energy -= .5
-
 
 		local knife_sprite = 102
 		local flip_y = false
@@ -54,9 +54,17 @@ function throw_knife()
 			make_bullet(playerang + .5)
 		end
 
-		if (split_shot == 2) then
+		if (split_shot >= 2) then
 			make_bullet(playerang + .25)
 			make_bullet(playerang + .75)
+		end
+
+		if (split_shot >= 3) then
+			if(bullet_tick%(6-split_shot) == 0) then
+				for i=0,3 do
+					make_bullet(playerang + .125+i*.25)
+				end
+			end
 		end
 
 		bullet_tick += 1
@@ -65,14 +73,6 @@ function throw_knife()
 		end
 
 		make_bullet(playerang)
-
-	if(carrot_crossfire > 0) then
-		if(bullet_tick%(4-carrot_crossfire) == 0) then
-			for i=0,3 do
-				make_bullet(playerang + .125+i*.25)
-			end
-		end
-	end
 	
 	end
 
@@ -101,7 +101,7 @@ function make_bullet(angle,shuriken,x,y,id,pierce)
 
 		local dmg = carrot_damage+5*w_damage
 
-		if (shuriken) dmg = 5+2*w_damage+3*w_shuriken
+		if (shuriken) dmg = 5+2*w_damage+2*w_shuriken
 
 			local k = {
 				x = sx, 
@@ -142,7 +142,6 @@ function move_bullets()
 					deal_damage(e, b.dmg )
 
 					b.go_through -=1
-					sfx(rnd({4,5}))
 						add_timed_anim(106,b.x,b.y,1,4)
 				end
 		end
@@ -154,7 +153,7 @@ function move_bullets()
 
 			if (b.is_carrot and carrot_splash > 0) then
 				add_explosion(b.x,b.y,4 + carrot_splash*3,2)
-				aoe_damage(b.x,b.y, 10 + carrot_splash*3,carrot_damage/3+carrot_splash*3)
+				aoe_damage(b.x,b.y, 12 + carrot_splash*3,carrot_damage/4+carrot_splash*3,237)
 			end
 
 		end

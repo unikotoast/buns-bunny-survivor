@@ -11,7 +11,7 @@ end
 
 ws = {
 
-	{sprite = 52, name = "cARROT bURGER \f2-15% speed", info = "+1 heart", use = function() 
+	{sprite = 52, name = "cARROT bURGER \f2-15% speed", info = "+1 ♥", use = function() 
 		playeracc -= .006
 		playerhp_max +=1 end},
 
@@ -22,7 +22,7 @@ ws = {
 		playeracc -= .006
 		p_energy_max +=1 end},
 
-	{sprite = 73, name = "cARROT cAKE \f2-30% speed", info = "full heal +1 carrot +1 heart", use = function () 
+	{sprite = 73, name = "cARROT cAKE \f2-30% speed", info = "full heal +1 carrot +1 ♥", use = function () 
 		playeracc -= .012
 		playerhp_max +=1
 		p_energy_max +=1
@@ -48,7 +48,7 @@ ws = {
 --		 end},
 
 {sprite=79, 
-		name="pIERCING sHOT \f2-0.5 carrot", info="carrots go through enemies ", use =  function() 
+		name="pIERCING sHOT \f9-0.5 carrot", info="carrots go through enemies ", use =  function() 
 		decrease_max_carrots()
 		drill_lvl+=1
 		--if (drill_lvl == 1) carrot_energy += 2
@@ -56,23 +56,23 @@ ws = {
 		 end},
 
 {sprite=66, 
-		name="sPLIT aTTACK \f2-0.5 carrot", info="shoot more carrots behind ", use =  function(self) 
+		name="cROSSFIRE \f9-0.5 carrot", info="shoot more carrots", use =  function(self) 
 		decrease_max_carrots()
 		--carrot_energy +=2
 		split_shot += 1 
-		if (split_shot == 2) del(ws, self)
+		if (split_shot == 5) del(ws, self)
 		end},
 
-{sprite=93, 
-		name="cROSSFIRE \f2-0.5 carrot", info="chance to shoot 4 carrots ", use =  function(self) 
-		carrot_crossfire += 1
-		decrease_max_carrots()
-	--	carrot_energy +=3
-		if (carrot_crossfire == 3) del(ws, self) 
-		end},
+--{sprite=93, 
+--		name="cROSSFIRE \f2-0.5 carrot", info="chance to shoot 4 carrots ", use =  function(self) 
+--		carrot_crossfire += 1
+--		decrease_max_carrots()
+--	--	carrot_energy +=3
+--		if (carrot_crossfire == 3) del(ws, self) 
+--		end},
 
 {sprite=92, 
-		name="sHURIKENS \f2-0.5 carrot", info="throw shurikens ", use =  function() 
+		name="sHURIKENS \f9-0.5 carrot", info="throw shurikens ", use =  function() 
 		decrease_max_carrots()
 	--	carrot_energy +=4
 		w_shuriken += 1
@@ -80,7 +80,12 @@ ws = {
 
 
 {sprite=91, 
-		name="aTTRACTOR", info="increase pick up range", use =  function() magnet_area+=12 end},
+		name="aTTRACTOR", info="pick up range, more bunnies", use =  function() 
+			magnet_area+=8
+			for i=0,30 do
+				bunny(timer+i*35+rnd(30))
+			end
+			end},
 
 --{sprite=126, 
 --		name="aRCANE fOCUS", info="+200% mp regen while standing", use =  function(self) 
@@ -89,13 +94,14 @@ ws = {
 --	end},
 
 {sprite=219, 
-		name="eXPLOSIVE cARROTS \f2-0.5 carrot", info="carrots do splash damage ", use =  function(self) 
-		decrease_max_carrots()
+		name="sPLASH \f9 -30% attack speed", info="carrots do splash damage ", use =  function(self) 
+		--decrease_max_carrots()
 		carrot_splash += 1
+		w_carrot_cd_max += 15
 		if (carrot_splash == 4) del(ws, self) 
 		end},
 {sprite=60, 
-		name="tHUNDER cLOUD \f2-1 heart", info="summon lightning ", use =  function(self) 
+		name="tHUNDER cLOUD \f8-1 ♥", info="summon lightning ", use =  function(self) 
 		decrease_max_hp()
 		if (w_lightning == 0) setup_cloud()
 		w_lightning+=1
@@ -103,7 +109,7 @@ ws = {
 		end},
 
 {sprite=121, 
-		name="rING oF fLAME \f2-1 heart", info="damage nearby enemies ", use =  function() 
+		name="rING oF fLAME \f8-1 ♥", info="damage nearby enemies ", use =  function() 
 		ring_of_fire += 1
 		decrease_max_hp()
 		end},

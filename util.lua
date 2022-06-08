@@ -1,8 +1,15 @@
-function aoe_damage(x,y,radius,dmg,dmg_player)
+function aoe_damage(x,y,radius,dmg,sprite,dmg_player)
 	if (dmg_player and dst(x,y,playerx,playery) < radius) damage_player(35)
 
 	for e in all(bugs) do
-		if (not e.exploded and dst(x,y,e.pos.x,e.pos.y) < radius) deal_damage(e, dmg)
+		if (dst(x,y,e.pos.x,e.pos.y) < radius) then
+			if (not e.exploded) then
+						add_timed_anim(sprite,e.pos.x,e.pos.y, 3,9)
+					deal_damage(e, dmg,true)
+				elseif(not e.is_bomb) then
+					e.exploded = false
+			end
+		end
 	end
 end
 
@@ -26,9 +33,9 @@ function angle_move(x,y, targetx, targety, speed)
 end
 
 
-function log(text)
-	printh(text)
-end
+--function log(text)
+--	printh(text)
+--end
 
 
 --function dst2(x1,y1,x2,y2)

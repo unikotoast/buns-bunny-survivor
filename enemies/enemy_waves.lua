@@ -6,7 +6,7 @@ function setup_enemy_waves()
 end
 
 function random_waves()
-	bats_wave(0, 1)
+	bats_wave(0, 2, 0)
 	bats_wave(0, 50, 2)
 	for i = 0,4 do
 		chick_wave(15+15*i, i)
@@ -18,8 +18,9 @@ function random_waves()
 	end
 	lich_wave(150,1)
 	bats_wave(180, 40, 0,true)
-	lich_wave(260,2)
-	skeletons_wave(300, 12, 0, true)
+	lich_wave(240,2)
+	skeletons_wave(290, 12, 0, true)
+	crystal_wave(310, 10)
 	for i = 0,12 do
 		lich_wave(380+i*5, 1)
 	end
@@ -33,13 +34,12 @@ function random_waves()
 	demon_wave(590)
 	
 	wave_chickens = function (time)
-		chick_wave(time,15+enemy_level*4,1)
-		chick_wave(time+15,enemy_level*4,1)
+		chick_wave(time,30+enemy_level*5,.75)
 		if (enemy_level > 8) chick_wave(time+15,enemy_level*2,.5)
 	end
 	
 	wave_jellies = function (time)
-		jellies_acid_wave(time, 20+enemy_level*3, 1)
+		jellies_acid_wave(time, 20+enemy_level*3, .5)
 	end
 	
 	wave_shrooms = function (time)
@@ -47,15 +47,11 @@ function random_waves()
 	end
 	
 	wave_bats_circle = function (time)
-		for i=0,2+enemy_level/4 do
-			bats_wave(time+i*7, 12, 0,true)
+		for i=0,1+enemy_level/4 do
+			local b = bats_wave
+			local s = skeletons_wave
+			rnd({b(time+i*7, 9+enemy_level*2, 0,true),s(time+i*7,5+enemy_level)})
 		end
-		if (enemy_level > 8) crystal_wave(time, flr(enemy_level/2))
-	end
-	
-	wave_bats = function (time)
-		bats_wave(time,30+enemy_level*4,1)
-		if (enemy_level > 6) bats_wave(time+15,enemy_level*3,.3)
 	end
 
 	wave_skeletons = function (time)
@@ -65,15 +61,15 @@ function random_waves()
 local t = 0
 	for i=2,19 do
 		t += .5*i
-		bunny(i*50+rnd(25))
-		crystal_wave((i-1)*60+rnd(30),1)
+		bunny(i*45+rnd(25))
+		crystal_wave((i-1)*50+rnd(30),1, flr(rnd(2.6)))
 		bats_wave(i*60+rnd(60), 10, 0,false,true)
 
 		local bombs = 1
 		if (i > 7) bombs = 2
 		bomb_wave(i*60+rnd(30),bombs)
 
-		local wave = rnd({wave_chickens, wave_jellies, wave_shrooms, wave_bats_circle,wave_bats,wave_skeletons})
+		local wave = rnd({wave_chickens, wave_jellies, wave_shrooms, wave_bats_circle,wave_skeletons})
 		if (i < 12 or i > 13) then
 		--	log("wave "..i.." : "..(i*35 - t))
 			wave(i*35-t)

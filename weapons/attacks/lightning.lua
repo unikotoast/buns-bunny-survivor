@@ -29,18 +29,12 @@ end
 
 
 function attack_lightning()
-		--sfx(18)
+		sfx(18)
 		local x1 = cloud.pos.x
 		local y1 = cloud.pos.y
 		
 		for i=1,3 do
 				add_timed_anim(55+flr(rnd(4)),x1,y1-2+ 8*i, 3,9)
 		end
-	
-		for e in all(bugs) do
-			if (dst(x1,y1+24,e.pos.x,e.pos.y) < 14+4*w_lightning) then
-				add_timed_anim(55+flr(rnd(4)),e.pos.x,e.pos.y, 3,9)
-				deal_damage(e, 6+3*w_damage+4*w_lightning)
-			end
-		end
+		aoe_damage(x1,y1+24, 14+4*w_lightning,6+3*w_damage+4*w_lightning,56)
 end

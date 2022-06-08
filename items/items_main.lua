@@ -2,9 +2,8 @@ items = {}
 
 function use_peach(self) 
    			sfx(13)
-	player_damaged = 80
+	player_damaged += 30
 	player_damaged_dash = true
-	--add_crosses(11)
 	dash_cooldown = dash_cooldown_max
 	playerhp += 1
 	if (playerhp > playerhp_max) playerhp = playerhp_max
@@ -12,11 +11,15 @@ function use_peach(self)
 end
 
 function use_carrot(self)
-   	sfx(14)
    	if (p_energy < p_energy_max) p_energy = p_energy_max
 	p_energy += 1
 --	if (p_energy > p_energy_max) p_energy = p_energy_max
-	delete_item(self)
+	if (self) then
+   		sfx(14)
+		delete_item(self)
+	else
+		p_energy += 2
+	end
 end
 
 function use_magnet(self)
@@ -34,7 +37,9 @@ function delete_item(item)
 end
 
 function make_item(sprite,x,y,use)
-	add(items,  {time = 12000, x = x, y =y, anim = add_anim(sprite,x,y,45,1), use = use})
+	local anim = {sprite = sprite, x = x, y =y, step = 0, interval = 45, frame = 0, frames = 1, timer = false}
+	add(animations, anim)
+	add(items,  {time = 12000, x = x, y =y, anim = anim, use = use})
 end
 
 function make_magnet(x,y) 

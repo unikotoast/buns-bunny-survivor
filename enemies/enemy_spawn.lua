@@ -63,7 +63,7 @@ function setup_enemy(enemy, life)
    			sfx(12)
 			add_explosion(enemy.pos.x,enemy.pos.y,25,8,true)
 			enemy.exploded = true
-			aoe_damage(enemy.pos.x,enemy.pos.y, 26,100,true)
+			aoe_damage(enemy.pos.x,enemy.pos.y, 26,100,237,true)
 		end
 	end
 	enemy.frame = 2
@@ -76,13 +76,14 @@ end
 
 function kill_enemy(enemy)
 	if (enemy.death_item) then
-		enemy.death_item(enemy.pos.x,enemy.pos.y) 
+		enemy.death_item(enemy.pos.x,enemy.pos.y,enemy.gems) 
 	else
 		if (enemy.spawn) then
 			for i = 1, enemy.spawn_count do
 				local e = enemy:spawn()
 --				e.max_speed = e.speed
 				e.bullet_id = enemy.bullet_id
+				e.exploded = true
 				enemy.dmg=1
 				e.aoe=6
 				e.pos=point(enemy.pos.x,enemy.pos.y)

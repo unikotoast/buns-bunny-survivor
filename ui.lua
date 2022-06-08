@@ -6,7 +6,6 @@ select_animation_reverse = true
 main_weapon = w_knife
 
 w_damage = 0
-w_attack_speed = 0
 w_move_speed = 0
 w_magic_wand = 0
 damage_dash = 0
@@ -129,6 +128,8 @@ function choose_weapon_buttons()
 		if (selected_upgrade <3) selected_upgrade +=1
 	elseif(btnp(4) or btnp(5)) then
 		if (choose_window_pause_t == 0) then
+			player_damaged += 45
+			player_damaged_dash = true
 			show_choose_window = false
 			show_lvlup = false
 			selected_item = random_weapons[selected_upgrade+1]

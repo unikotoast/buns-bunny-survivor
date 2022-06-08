@@ -118,7 +118,7 @@ function skeletons_wave(start_time, num, interval, circle)
 		sprite = 25,
 		death_sprite = 86,
 		speed = 0.20, 
-		hp = 15+enemy_level*5
+		hp = 10+enemy_level*5
 	}  end,
 		start_time,
 		interval,
@@ -127,18 +127,28 @@ function skeletons_wave(start_time, num, interval, circle)
 	)
 end
 
-function crystal_wave(start_time, num, interval)
+function crystal_wave(start_time, num,type)
+	local spr = 254
+	local item = make_gems
+	if (type == 1) then
+		spr = 252
+		item = make_peach
+	elseif (type == 2) then
+		spr = 220
+		item = make_magnet
+	end
 	return make_wave(
 		function() return {
-		sprite = 254,
+		sprite = spr,
 		death_sprite = 173,
-		speed = 0.15, 
-		hp = 1+enemy_level*30,
+		speed = 0.2, 
+		hp = 75+enemy_level*20,
+		gems = 11,
 		is_crystal = true,
-		death_item = rnd({make_peach,make_magnet,make_gems})
+		death_item = item
 	}  end,
 		start_time,
-		interval,
+		0,
 		num
 	)
 end
@@ -161,7 +171,7 @@ function lich_wave(start_time, num)
 		sprite = 46,
 		death_sprite = 210,
 		speed = 0.10, 
-		hp = 55, 
+		hp = 55+enemy_level*2, 
 		timer = 0,
 		interval = 20,
 		can_attack = true,

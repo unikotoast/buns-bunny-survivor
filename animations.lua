@@ -26,11 +26,6 @@ explosions = {}
 --	end
 --end
 
-function add_anim(sprite, x, y, interval, frames)
-	local anim = {sprite = sprite, x = x, y =y, step = 0, interval = interval, frame = 0, frames = frames, timer = false}
-	add(animations, anim)
-	return anim
-end
 
 function add_timed_anim(sprite, x, y, frames, timer, flip)
 	add(animations, {sprite = sprite, x = x, y =y, step = 0, interval = timer / frames, frame = 0, frames = frames, timer = timer, flip = flip})

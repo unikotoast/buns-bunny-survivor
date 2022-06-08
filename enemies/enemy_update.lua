@@ -150,28 +150,33 @@ function move_e(e)
 	if not e.follow and dst(playerx,playery,e.pos.x,e.pos.y) < e.aoe then
 		if (e.is_bomb or e.skull) then
 			kill_enemy(e)
-		elseif (not e.is_shine and e.death_item) then
+		elseif (not e.is_crystal and e.death_item) then
 			remove_enemy(e)
 			make_gems()
+   			sfx(23)
+			player_damaged = 90
+			player_damaged_dash = true
+			dash_cooldown = dash_cooldown_max
+			use_carrot()
 		elseif (not dash and e.no_collision) then
 			damage_player(e.dmg)
 			remove_bullet(e)
-
-	--	elseif (dash and e.dmg_dash != dash_id) then
-			--e.dmg_dash = dash_id
-			--add_timed_anim(50,e.pos.x, e.pos.y,2,30)
-			--deal_damage(e, dash_dmg)
 		else
 			playerx += (playerx - e.pos.x)/15
 			playery += (playery - e.pos.y)/15
-			damage_player(e.dmg)
+			if (player_damaged_dash) then
+				deal_damage(e, 1)
+			else
+				damage_player(e.dmg)
+			end
 		end
 	end
 end
 
-function make_gems(x,y)
-	for i=0,11 do
-		local p = random_outside_point(i/11,20,x,y)
+function make_gems(x,y,g)
+	local gems = g or 7
+	for i=0,gems do
+		local p = random_outside_point(i/gems,20,x,y)
 		make_gem(p.x,p.y)
 	end
 end

@@ -53,20 +53,21 @@ function level_up()
     if (show_lvlup) return
     level += 1
     if (level == 1) then
-        max_exp = 10
+        max_exp = 7
     else
-        max_exp = min(max_exp*1.2,75)
+        max_exp = min(max_exp*1.2,90)
     end
     exp = 0
     if (p_energy < p_energy_max) p_energy = p_energy_max
-    if (level % 5 == 0) then
+    if (level % 10 == 0) then
         playerhp_max +=1
-        p_energy_max +=1
     end
 
-      --  for i=1,30 do
-      --          add_particle(playerx-58+(playerhp_max-2)*8+rnd(12),playery+54 +rnd(12), rnd({14,15}), i*3)
-      --  end
+   -- add_timed_anim(251,playerx-47+(playerhp_max-2)*8,playery+48,3,30)
+
+   --     for i=1,30 do
+   --             add_particle(playerx-58+(playerhp_max-2)*8+rnd(12),playery+54 +rnd(12), rnd({14,15}), i*3)
+   --     end
 
     lvlup_txt = 148
     lvlup_speed = 10

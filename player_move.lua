@@ -111,9 +111,8 @@ function move_player()
 	end
 
 	if(btnp(4) and ((dash_cooldown >= dash_cooldown_max))) then
-		dash_id = rnd(1)
 --		player_focus = min(100, player_focus + 60)
-		player_damaged = 45
+		player_damaged += 45
 		player_damaged_dash = true
 		dash = true
 		dash_cooldown = 0

@@ -1,16 +1,11 @@
 
 map_tiles = {}
 
-chunks_x = {}
-chunks_y = {}
-
 function map_setup()
-	for i=-16, 16 do
+	for i=-32, 32 do
 		map_tiles[i] = {}
-		for j=-16, 16 do 
-		--	if (rnd(1) < .05) then
-						random_tile(i,j)
-		--	end
+		for j=-32, 32 do 
+			random_tile(i,j)
 		end
 	end
 end
@@ -18,10 +13,12 @@ end
 shake = 0
 shaking = 0
 
+map_size = 60
+
 
 function draw_map()
-	mapx=flr(playerx/16)*16
-	mapy=flr(playery/16)*16
+	mapx=flr(playerx/32)*32
+	mapy=flr(playery/32)*32
 
 	if (shake >0) shake -= 1
 
@@ -33,7 +30,11 @@ function draw_map()
 
 	camera((playerx)-64+shaking,(playery)-64+shaking)
 
-	rectfill(playerx-64,playery-64, playerx+64,playery+64, 3)
+	if (start) then
+		local p = random_outside_point(rnd(),map_size+4,0,0)
+		add_particle(p.x,p.y, 0, 80,.1)
+	end
+	circfill(0,0,map_size,3)
 
 	for i=flr(playerx/8 -8), flr(playerx/8 + 8) do
 		for j=flr(playery/8 -8), flr(playery/8 +8) do 
@@ -47,33 +48,6 @@ function draw_map()
 
 		end
 	end
-end
-
-function create_map_outside_x(xx)
-	if (chunks_x[xx*playery/8] == nil) then
-		chunks_x[xx*playery/8] = {}
-		for i=flr(playery/8 -8), flr(playery/8 + 8) do
-			random_tile(xx,i)
-			map_tiles[xx-32] = nil
-			map_tiles[xx+32] = nil
-		end
-	end
-
-			chunks_x[(xx-32)*playery/8]= nil
-			chunks_x[(xx+32)*playery/8]= nil
-end
-
-function create_map_outside_y(yy)
-	if (chunks_y[yy*playerx/8] == nil) then
-		chunks_y[yy*playerx/8] = {}
-		for i=flr(playerx/8 -8), flr(playerx/8 + 8) do
-			random_tile(i,yy)
-			map_tiles[i][yy-32] = nil
-			map_tiles[i][yy+32] = nil
-		end
-	end
-			chunks_y[(yy-32)*playerx/8]= nil
-			chunks_y[(yy+32)*playerx/8]= nil
 end
 
 function random_tile(x,y)

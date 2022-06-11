@@ -62,8 +62,8 @@ function animate_animations()
 	end
 end
 
-function add_particle(x,y,color,time)
-	add(particles, {x=x,y=y,color=color,time=time, speed = 0.5, move=true,direction = 2})
+function add_particle(x,y,color,time,move)
+	add(particles, {x=x,y=y,color=color,time=time, speed = 0.5, move=move or .5})
 end
 
 
@@ -73,7 +73,7 @@ end
 
 function move_particles()
  	for b in all(particles) do
-		b.y -= .5
+ 		b.y -= b.move
 	end
 end
 
@@ -86,37 +86,49 @@ function draw_text()
 	end
 end
 
-function add_explosion(x,y,size,s,enemy,lost)
+function add_explosion(x,y,size,s,enemy,lost,frost)
 	if (lost or enemy or (not enemy and carrot_splash > 2)) shake = s
-	for i=0,16 do
+	local count = 14
+	if (frost) count = 40
+	for i=0,count do
 				local p = random_outside_point()
-		add(explosions, {x=x,y=y,hx=p.x,hy=p.y,time = size, black = enemy, lost = lost})
+				local p1 = random_outside_point(rnd(),rnd(size),x,y)
+		add(explosions, {x=p1.x,y=p1.y,hx=p.x,hy=p.y,time = size, black = enemy, lost = lost,frost = frost})
 	end
 end
 
 function draw_particles()
 	for k, p in pairs(explosions) do
-          local a = angle_move(p.x, p.y, p.hx, p.hy, 1.5)
-          p.x+=a.x+.5-rnd(1)
-          p.y+=a.y+.5-rnd(1)
+		local speed = .2
+		if (p.frost) speed = .1
+        local a = angle_move(p.x, p.y, p.hx, p.hy, speed)
+        p.x+=a.x+.5-rnd(1)
+        p.y+=a.y+.5-rnd(1)
 
-          local clr = rnd({9,9,10})
-          if (p.black) then
+        local clr = rnd({8,9,10})
+		if (p.frost) clr = rnd({12,12,7})
+
+        if (p.black) then
 			clr = rnd({8,9,5})
-         	if (p.time <=8) clr = 6
-          end
-          if (p.lost) then
-         	clr = rnd({14,7,10})
-          end
+        	if (p.time <=8) clr = 6
+        end
+        if (p.lost) then
+        	clr = rnd({14,7,10})
+        end
 
-		circfill(p.x,p.y,max(0,p.time/2),clr)
+        local radius = p.time/2
+        if (p.frost) radius = rnd(2)
+		--circfill(p.x,p.y,rnd(2),clr)
+		circfill(p.x,p.y,max(0,radius),clr)
 
-		p.time -=1
-		if (p.time == 0) del(explosions,p)
+		p.time *=.9
+		p.time -=.01
+		if (p.time <= 0) del(explosions,p)
 
 	end
 	for k, p in pairs(particles) do
-		pset(p.x,p.y,p.color)
+		circfill(p.x,p.y,max(0,p.time/9),p.color)
+	--	pset(p.x,p.y,p.color)
 		p.time -=1
 		if (p.time == 0) del(particles,p)
 	end

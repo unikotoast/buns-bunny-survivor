@@ -28,15 +28,15 @@ function throw_knife()
 
 		local knife_sprite = 102
 		local flip_y = false
-		if (playerdir == 1 or playerdir == 3 or playerdir == 2) then 
+		if (playerang > .5 and playerang < 1) then 
 			flip_y = true
 		end
 
-		if (playerdir == 8 or playerdir == 2) then 
+		if (playerang == .25 or playerang == .75) then 
 			knife_sprite = 101
 		end
 
-		if (playerdir == 7 or playerdir == 1 or playerdir == 9 or playerdir == 3) then 
+		if (playerang % .125 == 0) then 
 			knife_sprite = 100
 		end
 
@@ -153,7 +153,7 @@ function move_bullets()
 
 			if (b.is_carrot and carrot_splash > 0) then
 				add_explosion(b.x,b.y,4 + carrot_splash*3,2)
-				aoe_damage(b.x,b.y, 12 + carrot_splash*3,carrot_damage/4+carrot_splash*3,237)
+				aoe_damage(b.x,b.y, 12 + carrot_splash*3,carrot_damage/4+carrot_splash*3,118)
 			end
 
 		end

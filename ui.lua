@@ -7,27 +7,27 @@ main_weapon = w_knife
 
 w_damage = 0
 w_move_speed = 0
-w_magic_wand = 0
-damage_dash = 0
-vampirism = 0
-w_arcane = false
 
 player_skills = {}
 
 p_energy_regen += .3
 
 
-function setup_random_weapons() 
+function setup_random_weapons(reroll) 
 	random_weapons = {}
 	local wr = {}
 	for w in all(ws) do
 		add(wr,w)
 	end
-
-	for i=1,4 do
+	local c = 4
+	if (reroll) c = 3
+	for i=1,c do
 		random = rnd(wr)
 	    add(random_weapons, random)
 	   del(wr, random)
+	end
+	if (reroll) then
+	    add(random_weapons, w_reroll)
 	end
 	selected_item = random_weapons[1]
 end
@@ -127,12 +127,15 @@ function choose_weapon_buttons()
 	elseif(btnp(1)or btnp(3,1)) then
 		if (selected_upgrade <3) selected_upgrade +=1
 	elseif(btnp(4) or btnp(5)) then
-		if (choose_window_pause_t == 0) then
+		selected_item = random_weapons[selected_upgrade+1]
+		if (selected_item.reroll) then
+				setup_random_weapons()
+		elseif (choose_window_pause_t == 0) then
 			player_damaged += 45
 			player_damaged_dash = true
 			show_choose_window = false
 			show_lvlup = false
-			selected_item = random_weapons[selected_upgrade+1]
+			
 			selected_item:use()
 			if (selected_item.lvl)then
 				selected_item.lvl += 1

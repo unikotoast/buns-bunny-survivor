@@ -4,10 +4,10 @@ function aoe_damage(x,y,radius,dmg,sprite,dmg_player)
 	for e in all(bugs) do
 		if (dst(x,y,e.pos.x,e.pos.y) < radius) then
 			if (not e.exploded) then
-						add_timed_anim(sprite,e.pos.x,e.pos.y, 3,9)
-					deal_damage(e, dmg,true)
-				elseif(not e.is_bomb) then
-					e.exploded = false
+				add_timed_anim(sprite,e.pos.x,e.pos.y, 3,9)
+				deal_damage(e, dmg,true)
+			elseif(not e.is_bomb) then
+				e.exploded = false
 			end
 		end
 	end

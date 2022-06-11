@@ -20,7 +20,7 @@ function bdell(k,e,_b)
 	del(_b[k], e)
 end
 
-function bstore(_b,e)
+function bstore(_b,e,clear)
 	local p = p_str(coords(e[_b.prop],_b.size))
 	local k = e._k
 	if k then
@@ -28,23 +28,19 @@ function bstore(_b,e)
 			local b = _b[k]
 			del(b,e)
 			if (#b == 0) _b[k]=nil
+			if (clear) then
+				bdell(p,e,_b)
+			else
+				badd(p,e,_b)
+			end
+		end
+	else 
+		if (clear) then
+			bdell(p,e,_b)
+		else
 			badd(p,e,_b)
 		end
-	else badd(p,e,_b) end
-	e._k = p
-end
-
-function bclear(_b,e)
-	local p = p_str(coords(e[_b.prop],_b.size))
-	local k = e._k
-	if k then
-	if (k != p) then
-		local b = _b[k]
-		del(b,e)
-		if (#b == 0) _b[k]=nil
-			bdell(p,e,_b)
-		end
-	else bdell(p,e,_b) end
+	end
 	e._k = p
 end
 

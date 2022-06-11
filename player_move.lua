@@ -1,6 +1,5 @@
 
 playerflip=false
-playerdir=2
 playeracc=.084
 playerdx=0
 playerdy=0
@@ -17,6 +16,7 @@ dash_cooldown_max = 180
 magnet_area = 8
 
 player_speed = 0
+player_push = 0
 --player_focus = 0
 
 function move_player()
@@ -49,75 +49,75 @@ function move_player()
 	end
 
 	 creating_item = false
+	 if ( player_push == 0) then
 	if(btn(⬅️)) then
 		is_moving = true
 		playerflip = true
-		playerdir = 4
 		playerang = .5
 		if (flr(playerx) % 8 == 0) then
- 			create_map_outside_x(flr(playerx/8-9))
 		end
 	end
 	if(btn(➡️)) then
 		is_moving = true
 		playerflip = false
-		playerdir = 6
 		playerang = 1
 		if (flr(playerx) % 8 == 0) then
- 		create_map_outside_x(flr(playerx/8+9))
 		end
 	end
 	if(btn(⬆️)) then
 		is_moving = true
 		if( btn(⬅️)) then
-			playerdir = 7
 			playerang = .375
 		elseif( btn(➡️)) then
-			playerdir = 9
 			playerang = .125
 		else
-			playerdir = 8
 			playerang = .25
 		end
 		if (flr(playery) % 8 == 0) then
- 			create_map_outside_y(flr(playery/8-9))
 		end
 	end
 	if(btn(⬇️)) then
 		is_moving = true
 		if( btn(⬅️)) then
-			playerdir = 1
 			playerang = .625
 		elseif( btn(➡️)) then
-			playerdir = 3
 			playerang = .875
 		else
-			playerdir = 2
 			playerang = .75
 		end
 		if (flr(playery) % 8 == 0) then
- 		create_map_outside_y(flr(playery/8+9))
 		end
+	end
 	end
 	if (is_moving) then
 		--if (player_focus < 100) then
 		--	player_focus += 1
 		--end
 		player_speed += playeracc
---	else
+	elseif (player_push > 0) then
+		player_push -= 1
+		player_speed -= playeracc
+		if (player_push<=0)player_push=0
 		--if (player_focus > 0) then
 		--	player_focus -= 1
 		--end
 	end
 
 	if(btnp(4) and ((dash_cooldown >= dash_cooldown_max))) then
+		frost_dash()
 --		player_focus = min(100, player_focus + 60)
 		player_damaged += 45
 		player_damaged_dash = true
 		dash = true
+		dash_id = rnd()
 		dash_cooldown = 0
 		player_speed=.6
-		player_speed*=20
+
+		if (fire_dash) then
+			player_speed*=40
+		else
+			player_speed*=20
+		end
 	
 		 sfx(6)
 	end
@@ -133,7 +133,13 @@ function dash_move()
 --	end
 --end
 	if (dash_timer % 1 == 0) then
-		add_timed_anim(22,playerx,playery,3,9, playerflip)
+		if (fire_dash) then
+			aoe_damage(playerx,playery, 16,30,118)
+			add_explosion(playerx,playery+4,6,0)
+		end
+		local spr = 22
+		if (frosty_dash) spr = 16
+		add_timed_anim(spr,playerx,playery,3,9, playerflip)
 	end
 
 	dash_timer -= 1
@@ -141,6 +147,7 @@ function dash_move()
 	if (dash_timer <= 0) then
 		shake = 0
 		dash = false
+		frost_dash()
 		dash_timer = 5
 	end
 
@@ -150,6 +157,14 @@ end
 
 
 function interact(x,y)
+	if (dst(playerx,playery,0,0) > map_size) then
+		if (start) then
+			player_push = 10
+			player_speed-= 3
+		else
+			damage_player(1)
+		end
+	end
 	--if (not dash) then
 		for gem in all(gems) do
 			if (dst(playerx,playery, gem.x,gem.y) < magnet_area) then

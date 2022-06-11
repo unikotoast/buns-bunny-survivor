@@ -12,6 +12,7 @@ function put_cat()
 		cat.y = playery
 
 	else
+		aoe_damage(x1,y1+24, 14+4*w_lightning,6+3*w_damage+4*w_lightning,51336)
 	
 	for e in all(bugs) do
 

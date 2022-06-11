@@ -142,7 +142,7 @@ function crystal_wave(start_time, num,type)
 		sprite = spr,
 		death_sprite = 173,
 		speed = 0.2, 
-		hp = 75+enemy_level*20,
+		hp = 100+enemy_level*20,
 		gems = 11,
 		is_crystal = true,
 		death_item = item

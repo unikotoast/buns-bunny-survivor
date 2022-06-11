@@ -26,21 +26,21 @@ function draw_manual()
 
 
 
-      for i=0,31/32,1/32 do
-		local x=0+cos(i+t()/8)*30
-		local y=-40+sin(i+t()/8)*4+ay
-		local w=26+cos(i*1+t()/2)*4
-		local h=12+sin(i*2+t()/2)*6
-
-		--fillp(pattern[i*32])
-		ovalfill(x-w,y-h,x+w,y+h, 0)
-		-- (i*32)%8+8)
-
-	end
+    --  for i=0,31/32,1/32 do
+	--	local x=0+cos(i+t()/8)*30
+	--	local y=-40+sin(i+t()/8)*4+ay
+	--	local w=16+cos(i*1+t()/2)*4
+	--	local h=12+sin(i*2+t()/2)*6
+--
+	--	--fillp(pattern[i*32])
+	--	ovalfill(x-w,y-h,x+w,y+h, 0)
+	--	-- (i*32)%8+8)
+--
+	--end
 
 print("bunny survivor",-26,-36+ay,14)
-print("MADE BY unikotoast",-62, 56+ay,6)
-print("1.3",52, 56+ay,6)
+print("BY unikotoast",-62, 56+ay,6)
+print("1.4",52, 56+ay,6)
     -- pset(-26,-40+ay,8)
     -- pset(-28,-40+ay,8)
 
@@ -60,12 +60,13 @@ print("1.3",52, 56+ay,6)
 
 
 	if (starting) then
+		map_size += 8
 		starting_time -= 1
 		starting_time *= .90
 	end
 	if (starting_time <= 0) then
-	start = false
-	setup_enemy_waves()
+		start = false
+		setup_enemy_waves()
 	end
 end
 

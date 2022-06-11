@@ -7,13 +7,11 @@ playerhp=3
 playerhp_max=3
 p_energy = 3
 p_energy_max = 3
-ang1 = 0
-ang2 = 0.625
-s_ang=0.0625
 playerang = .75
 player_damaged = 0
 beam_animation= .1
 
+hair_color= 14
 player_damaged_dash = false
 
 function damage_player(dmg)
@@ -24,6 +22,11 @@ function damage_player(dmg)
 		shake = 8
 		if (playerhp <= 0) game_lost()
 	end
+end
+
+
+function pink_line(i,clr)
+	line(playerx+2+i,playery+2, playerx+2+i,playery-65, rnd({14,clr}))
 end
 
 function draw_player()
@@ -46,8 +49,8 @@ end
 			if (rnd()<0.15) clr = 15
 			if (rnd()<0.15) clry = 15
 				for i=0,beam_animation do 
-					line(playerx+2+i,playery+2, playerx+2+i,playery-65, rnd({14,clr}))
-					line(playerx+2-i,playery+2, playerx+2-i,playery-65, rnd({14,clry}))
+					pink_line(i,clr)
+					pink_line(-i,clry)
 				end
 
 			for i = 1,3 do 
@@ -72,29 +75,6 @@ end
 			return
 	end
 
-
---ang1+=0.005
---ang2+=0.005
---  for s=0,3 do
---      local a = s*s_ang
---      --add_timed_anim(50,64+32*cos(ang1+a),64+24*sin(ang2+a),2,20)
---    --  add_particle(64+32*cos(ang1+a),64+24*sin(ang2+a),s,1)
---   --   pset(64+32*cos(ang1+a),64+24*sin(ang2+a),s)
---   spr(84,playerx+11*cos(ang1+a),playery+11*sin(ang2+a))
---     -- print("░",0+32*cos(ang1+a),0+32*sin(ang2+a),rnd({8,9,10}))
---  end
-
-
-
- --   for s=0,8 do
- --       local a = s*s_ang
- --       --add_timed_anim(50,64+32*cos(ang1+a),64+24*sin(ang2+a),2,20)
- --     --  add_particle(64+32*cos(ang1+a),64+24*sin(ang2+a),s,1)
- --    --   pset(64+32*cos(ang1+a),64+24*sin(ang2+a),s)
- --       print("░",0+32*cos(0.625+a),0+32*sin(ang2+a),rnd({8,9,10}))
- --   end
---p_energy=0
-
 	if (player_damaged  > 1) then
 
 		for i = 0,15 do 
@@ -107,25 +87,26 @@ end
 		end
 	end
 
-	if (playerdir == 8) then
+	if (playerang == .25) then
 		p_sprite = 84
-	elseif (playerdir == 2) then
+	elseif (playerang == .75) then
 		p_sprite = 106
 		
 	end
+						pal(14, hair_color) 
 	if (dash_cooldown < dash_cooldown_max - dash_cooldown_max/5 ) then
-		if (playerdir == 8) then
+		if (playerang == .25) then
 			p_sprite = 95
-		elseif (playerdir == 2) then
+		elseif (playerang == .75) then
 			p_sprite = 62
 		else
 			p_sprite = 51
 		end
 
 	elseif(dash_cooldown < dash_cooldown_max) then
-		if (playerdir == 8) then
+		if (playerang == .25) then
 			p_sprite = 117
-		elseif (playerdir == 2) then
+		elseif (playerang == .75) then
 			p_sprite = 106
 		else
 			p_sprite = 73
@@ -183,7 +164,7 @@ draw_hair=function(obj,facing)
     		if (player_damaged_dash or dash_cooldown  <   (dash_cooldown_max - ((dash_cooldown_max /6)*i) )) then
     			clr = 7
     		else
-    			clr = 14
+    			clr = hair_color
     		end
 
     			local h =obj.hair[i]

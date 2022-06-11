@@ -38,8 +38,8 @@ function jellies_acid_wave(start_time, num, interval)
 		function() return {
 		sprite = 181,
 		death_sprite = 183,
-		speed = 0.20, 
-		hp = 10+enemy_level*5,
+		speed = 0.25, 
+		hp = 15+enemy_level*5,
 		life_time = 1400,
 		spawn_count = 2,
 		spawn = jelly_acid
@@ -55,7 +55,7 @@ function jelly_acid()
 	return {
 		sprite = 94,
 		death_sprite = 183,
-		speed = .27, 
+		speed = .2, 
 		life_time = 1000,
 		hp = 5+enemy_level*3
 	}
@@ -77,19 +77,20 @@ function chick_wave(start_time, num, interval, shine)
 end
 
  
-function mushroom_wave(start_time, num, interval)
+function mushroom_wave(start_time, num)
 	return make_wave(
 		function() return {
 		sprite = 157,
 		death_sprite = 61,
-		speed = 0.2, 
-		hp = 30+enemy_level*9,
+		speed = 0.10, 
+		hp = 60+enemy_level*9,
 		spawn_count = 4,
 		spawn = mushroom_small
 	}  end,
 		start_time,
-		interval,
-		num
+		.05,
+		num,
+		true
 	)
 end
 
@@ -97,9 +98,9 @@ function mushroom_small()
 	return {
 		sprite = 141,
 		death_sprite = 173,
-		speed = 0.3, 
+		speed = 0.35, 
 		life_time = 1800,
-		hp = 15+enemy_level*2
+		hp = 5
 	}
 end
 

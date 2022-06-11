@@ -72,7 +72,7 @@ function level_up()
     lvlup_txt = 148
     lvlup_speed = 10
     lvlup_speed_reverse = false
-    setup_random_weapons()
+    setup_random_weapons(level % 5 == 0 or level == 1)
     choose_window_t = 30
     choose_window_pause_t = 80
     show_lvlup =true

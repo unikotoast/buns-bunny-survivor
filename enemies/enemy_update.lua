@@ -34,8 +34,6 @@ function draw_enemy_object(e)
 		for i = 0,15 do 
 			pal(i, 14) 
 		end
---	else
---		if (e.max_speed) e.speed = min(e.max_speed, e.speed*1.05)
 	end
 
 	if (e.draw_black) then
@@ -76,6 +74,10 @@ function draw_enemy_object(e)
 		end
 	end
 
+		if (e.max_speed and e.speed < e.max_speed) then
+			e.speed = min(e.max_speed, e.speed*1.01)
+			spr(167,e.pos.x,e.pos.y)
+		end
 end
 
 function remove_bullet(e)
@@ -161,6 +163,9 @@ function move_e(e)
 		elseif (not dash and e.no_collision) then
 			damage_player(e.dmg)
 			remove_bullet(e)
+		--elseif (dash and fire_dash and e.dash_id ~= dash_id) then
+		--	e.dash_id = dash_id
+		--	deal_damage(e, 40)
 		else
 			playerx += (playerx - e.pos.x)/15
 			playery += (playery - e.pos.y)/15

@@ -67,7 +67,7 @@ function setup_enemy(enemy, life)
 		end
 	end
 	enemy.frame = 2
---	enemy.max_speed = enemy.speed
+	enemy.max_speed = enemy.speed
 	enemy.aoe=8
 	enemy.dmg=1
 	enemy.pos=point(0,0)
@@ -81,7 +81,7 @@ function kill_enemy(enemy)
 		if (enemy.spawn) then
 			for i = 1, enemy.spawn_count do
 				local e = enemy:spawn()
---				e.max_speed = e.speed
+				e.max_speed = e.speed
 				e.bullet_id = enemy.bullet_id
 				e.exploded = true
 				enemy.dmg=1
@@ -105,7 +105,7 @@ function remove_enemy(enemy)
 	add_timed_anim(enemy.death_sprite,enemy.pos.x,enemy.pos.y,3,12)
 	enemy.pos.x =0
 	enemy.pos.y =0
-	bclear(bugstore,enemy)
+	bstore(bugstore,enemy,true)
 	del(bugs,enemy)
 	store_enemies()
 end

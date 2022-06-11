@@ -34,16 +34,17 @@ function _draw()
 	if (not show_lvlup) then
 		facing = 0
 		if (playerflip) facing = -4
-		if (playerdir==8) facing = -3
+		if (playerang==.25) facing = -3
 		draw_bullets()
 	end
 	draw_bugs()
-	if (playerdir == 2) draw_hair(obj, facing)
-		draw_player()
-	if (playerdir ~= 2) draw_hair(obj, facing)
-		animate_animations()
+	if (playerang ~= .75) draw_player()
+		draw_hair(obj, facing)
+	if (playerang == .75) draw_player()
+	animate_animations()
 	ring_fire_damage_draw()
 	draw_enemy_bullets()
+	draw_particles()
 	if (not start) then
 
 		draw_player_bars()
@@ -52,16 +53,14 @@ function _draw()
 			draw_timer()
 		end
 	end
-
 	if (start) then
 		draw_manual()
 	end
 
 	draw_items()
-	draw_particles()
 	draw_text()
---print("kb"..stat(0),(playerx)-64,(playery)-57,0)
---print("∧"..flr(100*stat(1)).."%",(playerx)-64,(playery)-50,0)
+--print("kb"..stat(0),(playerx)-64,(playery)-57,2)
+--print("∧"..flr(100*stat(1)).."%",(playerx)-64,(playery)-50,2)
 --print(""..playerhp,playerx+42,playery-52,7)
 --print("max"..max_exp,playerx+42,playery-46,7)
 end

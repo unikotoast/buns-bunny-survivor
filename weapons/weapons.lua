@@ -9,6 +9,25 @@ function decrease_max_carrots()
 	p_energy_max -=.5
 end
 
+w_fire_d = {sprite=89, 
+		name="fIRE dASH", info="dash damages enemies", use =  function() 
+		hair_color = 8
+		fire_dash = true
+		del(ws, w_frost_d) 
+		del(ws, w_fire_d) 
+		end}
+
+w_frost_d = {sprite=90, 
+		name="fROSTY dASH", info="dash freezes enemies", use =  function(self) 
+		hair_color = 12
+		frosty_dash = true
+		del(ws, w_fire_d) 
+		del(ws, w_frost_d) 
+		end}
+
+w_reroll = {sprite=108, 
+		name="rEROLL", info="", reroll = true}
+
 ws = {
 
 	{sprite = 52, name = "cARROT bURGER \f2-15% speed", info = "+1 ♥", use = function() 
@@ -122,10 +141,15 @@ ws = {
 --		end}
 --
 --}
-{sprite=202, 
-		name="mAGIC wATERING \f2-15% speed", info="+30% mp regen", use =  function() 
-		p_energy_timer_max -= 7
-		playeracc -= .006
-		end}
+{sprite=93, 
+		name="gOLDEN cARROT \f2-20% speed", info="+75% carrot regen", use =  function(self) 
+		p_energy_timer_max -= 20
+		playeracc -= .009
+		del(ws, self) 
+		end},
+
+w_fire_d,
+
+w_frost_d
 
 }

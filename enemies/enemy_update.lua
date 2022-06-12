@@ -152,7 +152,7 @@ function move_e(e)
 	if not e.follow and dst(playerx,playery,e.pos.x,e.pos.y) < e.aoe then
 		if (e.is_bomb or e.skull) then
 			kill_enemy(e)
-		elseif (not e.is_crystal and e.death_item) then
+		elseif (not e.is_crystal and e.death_item and e.is_bunny) then
 			remove_enemy(e)
 			make_gems()
    			sfx(23)

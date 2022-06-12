@@ -1,5 +1,6 @@
 enemy_waves = {}
 enemy_level = 0
+wave_index = 0
 
 function setup_enemy_waves()
 	random_waves()
@@ -34,41 +35,45 @@ function random_waves()
 	demon_wave(590)
 	
 	wave_chickens = function (time)
-		chick_wave(time,25+enemy_level*5,.75)
-		if (enemy_level > 8) chick_wave(time+15,enemy_level*2,.75)
+		chick_wave(time,20+wave_index*2,1)
 	end
 	
 	wave_jellies = function (time)
-		jellies_acid_wave(time, 25+enemy_level*2, 1)
+		jellies_acid_wave(time, 20+wave_index, 1)
 	end
 	
 	wave_shrooms = function (time)
-		mushroom_wave(time, 10+enemy_level*3)
+		mushroom_wave(time, 7+wave_index)
 	end
 	
 	wave_bats_circle = function (time)
-		for i=0,1+enemy_level/10 do
-			bats_wave(time+i*9, 9+enemy_level, 0,true)
-			skeletons_wave(time+i*9,enemy_level*2)
+		for i=0,1 do
+			bats_wave(time+i*8, 10+wave_index, 0,true)
+			skeletons_wave(time+i*8,wave_index)
 		end
 	end
 
 	wave_skeletons = function (time)
-		skeletons_wave(time,20+enemy_level*2,1.5)
+		skeletons_wave(time,30+wave_index*2,1.5)
+	end
+
+	wave_eye = function (time)
+		eye_wave(time,20+wave_index*2,1)
 	end
 
 local t = 0
 	for i=2,19 do
 		t += .5*i
+		wave_index += 1
 		bunny(i*45+rnd(25))
 		crystal_wave((i-1)*50+rnd(30),1, flr(rnd(2.6)))
 		bats_wave(i*60+rnd(60), 10, 0,false,true)
 
 		bomb_wave(i*60+rnd(30),1)
 
-		local wave = rnd({wave_chickens, wave_jellies, wave_shrooms, wave_bats_circle,wave_skeletons})
+		local wave = rnd({wave_chickens, wave_jellies, wave_shrooms, wave_bats_circle,wave_skeletons,wave_eye})
 		if (i < 12 or i > 13) then
-		--	log("wave "..i.." : "..(i*35 - t))
+			--log("wave "..i.." : "..(i*35 - t))
 			wave(i*35-t)
 		end
 	end

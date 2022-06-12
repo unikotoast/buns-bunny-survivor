@@ -33,9 +33,9 @@ function angle_move(x,y, targetx, targety, speed)
 end
 
 
---function log(text)
---	printh(text)
---end
+function log(text)
+	printh(text)
+end
 
 
 --function dst2(x1,y1,x2,y2)

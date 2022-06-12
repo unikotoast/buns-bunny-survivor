@@ -62,6 +62,7 @@ function level_up()
     if (level % 10 == 0) then
         playerhp_max +=1
     end
+    dash_cooldown = dash_cooldown_max
 
    -- add_timed_anim(251,playerx-47+(playerhp_max-2)*8,playery+48,3,30)
 

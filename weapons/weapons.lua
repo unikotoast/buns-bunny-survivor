@@ -52,8 +52,9 @@ ws = {
 		playeracc += .003
 		w_attack_speed +=1 end},
 
-	{sprite = 78, name = "sWIFTNESS LVL", info = "faster movement", use = function (self) 
+	{sprite = 78, name = "sWIFTNESS LVL", info = "faster movement and dash", use = function (self) 
 		w_move_speed += 1
+		dash_cooldown_max -= 20
 		if (w_move_speed == 4) del(ws, self)
 		playeracc += .008 end},
 
@@ -93,6 +94,7 @@ ws = {
 {sprite=92, 
 		name="sHURIKENS \f9-0.5 carrot", info="throw shurikens ", use =  function() 
 		decrease_max_carrots()
+		w_carrot_cd_max += 5
 	--	carrot_energy +=4
 		w_shuriken += 1
 		end},

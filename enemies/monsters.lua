@@ -1,25 +1,4 @@
 
-
---function skull_wave(start_time)
---	return make_wave(
---		function() return {
---		sprite = 11,
---		death_sprite = 86,
---		speed = 0, 
---		hp = 10,
---		life_time = 11560,
---		can_attack = false,
---		timer = 0,
---		interval = 60,
---		attack = skull_attack,
---		pos = {x=x, y=y},
---		dmg = 1
---	} end,
---		start_time,
---		1,
---		1
---	)
---end
 function bats_wave(start_time, num, interval, circle, swarm)
 	local speed = .15
 	if (swarm) speed = .9
@@ -39,86 +18,29 @@ function bats_wave(start_time, num, interval, circle, swarm)
 	)
 end
 
---function eye_wave(start_time, num, interval, shine)
---	return make_wave(
---		function() return {
---		sprite = 14,
---		death_sprite = 173,
---		speed = 0.10+(rnd(.25)), 
---		hp = 25,
---		dmg = .5,
---		can_shine = shine
---	}  end,
---		start_time,
---		interval,
---		num
---	)
---end
+function eye_wave(start_time, num, interval)
+	return make_wave(
+		function() return {
+		sprite = 14,
+			death_sprite = 173,
+			speed = .1+rnd(.25), 
+			hp = 15+enemy_level
+	}  end,
+		start_time,
+		interval,
+		num,
+		circle,
+		swarm
+	)
+end
 
---function bat()
---	return {
---			sprite = 9,
---			death_sprite = 70,
---			speed = .2, 
---			hp = 20,
---			draw_black = true,
---			dmg = 1
---		} 
---end
---
---function bats_wave(start_time, num, interval, is_swarm, speed)
---	return make_wave(
---		{
---			sprite = 9,
---			death_sprite = 70,
---			speed = .2, 
---			hp = 20,
---			draw_black = true,
---			dmg = 1
---		} ,
---		start_time,
---		interval,
---		num,
---		false,
---		is_swarm
---	)
---end
-
---function bats_circle(start_time)
---	return make_wave(
---		function() return bat()
---		 end,
---		start_time,
---		0,
---		30,
---		true,
---		false
---	)
---end
-
---function skeletons_wall(start_time)
---	return make_wave(
---		function() return {
---		sprite = 25,
---		death_sprite = 86,
---		speed = 0.12, 
---		hp = 40,
---		dmg = 1
---	}  end,
---		start_time,
---		0,
---		20,
---		true
---	)
---end
---
 function skeletons_wave(start_time, num, interval, circle)
 	return make_wave(
 		function() return {
 		sprite = 25,
 		death_sprite = 86,
 		speed = 0.20, 
-		hp = 10+enemy_level*5
+		hp = 25+enemy_level*2
 	}  end,
 		start_time,
 		interval,
@@ -171,7 +93,7 @@ function lich_wave(start_time, num)
 		sprite = 46,
 		death_sprite = 210,
 		speed = 0.10, 
-		hp = 55+enemy_level*2, 
+		hp = 100, 
 		timer = 0,
 		interval = 20,
 		can_attack = true,
@@ -210,19 +132,3 @@ function demon_wave(start_time)
 		1
 	)
 end
--- 
---function bomb_wave(start_time)
---	return make_wave(
---		function() return {
---		sprite = 41,
---		death_sprite = 37,
---		speed = .5, 
---		hp = 30,
---		particle = 10,
---		dmg = 1
---	}  end,
---		start_time,
---		1,
---		1
---	)
---end

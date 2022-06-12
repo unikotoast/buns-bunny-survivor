@@ -40,7 +40,7 @@ function draw_manual()
 
 print("bunny survivor",-26,-36+ay,14)
 print("BY unikotoast",-62, 56+ay,6)
-print("1.4",52, 56+ay,6)
+print("1.5",52, 56+ay,6)
     -- pset(-26,-40+ay,8)
     -- pset(-28,-40+ay,8)
 

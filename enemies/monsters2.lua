@@ -7,6 +7,7 @@ function bunny(start_time)
 		speed = 0, 
 		hp = 6,
 		no_teleport = true,
+		is_bunny = true,
 		death_item = make_peach,
 		pos = {x=0, y=0}
 	} end,
@@ -39,7 +40,7 @@ function jellies_acid_wave(start_time, num, interval)
 		sprite = 181,
 		death_sprite = 183,
 		speed = 0.25, 
-		hp = 15+enemy_level*5,
+		hp = 50,
 		life_time = 1400,
 		spawn_count = 2,
 		spawn = jelly_acid
@@ -57,7 +58,7 @@ function jelly_acid()
 		death_sprite = 183,
 		speed = .2, 
 		life_time = 1000,
-		hp = 5+enemy_level*3
+		hp = 15
 	}
 end
 

@@ -21,7 +21,7 @@ bullet_carrots ={}
 function throw_knife()
 	if (w_carrot_cd == 0  and p_energy >= .5) then
 		energy_cd = 50
-		w_carrot_cd = max(w_carrot_cd_max - w_attack_speed*5,5)
+		w_carrot_cd = max(w_carrot_cd_max,5)
 		p_energy -= .5
 
 		local knife_sprite = 102
@@ -42,7 +42,7 @@ function throw_knife()
 			local sh = w_shuriken
 			for i=0,sh*2 do
 				if (i ~= sh) then
-					local ang = playerang -.03*sh + i *.03
+					local ang = playerang -.04*sh + i *.04
 					make_bullet(ang, 125)
 				end
 			end
@@ -71,7 +71,7 @@ function throw_knife()
 		end
 
 		make_bullet(playerang)
-	
+
 	end
 
 
@@ -99,7 +99,7 @@ function make_bullet(angle,shuriken,x,y,id,pierce)
 
 		local dmg = carrot_damage+5*w_damage
 
-		if (shuriken) dmg = 5+w_damage+2*w_shuriken
+		if (shuriken) dmg = 5+w_damage+w_shuriken
 
 			local k = {
 				x = sx, 

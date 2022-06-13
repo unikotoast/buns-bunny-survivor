@@ -86,14 +86,14 @@ function draw_text()
 	end
 end
 
-function add_explosion(x,y,size,s,enemy,lost,frost)
+function add_explosion(x,y,size,s,enemy,lost,frost,lightning)
 	if (lost or enemy or (not enemy and carrot_splash > 2)) shake = s
 	local count = 14
 	if (frost) count = 40
 	for i=0,count do
 				local p = random_outside_point()
 				local p1 = random_outside_point(rnd(),rnd(size),x,y)
-		add(explosions, {x=p1.x,y=p1.y,hx=p.x,hy=p.y,time = size, black = enemy, lost = lost,frost = frost})
+		add(explosions, {x=p1.x,y=p1.y,hx=p.x,hy=p.y,time = lightning or size, black = enemy, lost = lost,frost = frost, is_light = lightning})
 	end
 end
 
@@ -118,6 +118,7 @@ function draw_particles()
 
         local radius = p.time/2
         if (p.frost) radius = rnd(2)
+        if (p.is_light) radius = 0
 		--circfill(p.x,p.y,rnd(2),clr)
 		circfill(p.x,p.y,max(0,radius),clr)
 

@@ -1,42 +1,50 @@
 w_lightning = 0
-w_lightning_time = 200
+lightning_time = 180
 
 function setup_cloud()
 	cloud = {
 		sprite = 37,
 		death_sprite = 38,
 		speed = .14 + w_lightning *.04, 
-		follow = true,
+		is_cloud = true,
 		no_collision = true,
+		targetx = playerx,
+		targety = playery,
 		pos=point(playerx,playery)
 	}
-	add(enemy_bullets,cloud) 
+	add(enemy_bullets, cloud) 
 end
 
 function update_lightning()
 	if (w_lightning > 0) then
-		w_lightning_time -= 1
-		if (w_lightning_time <= 0) then
-			w_lightning_time = 200 - w_attack_speed*25
-			cloud.sprite = 37
-			attack_lightning()
-		elseif (w_lightning_time == 55) then
-			cloud.sprite = 39
-		end
-
+	--	for e in all(enemy_bullets) do
+	--		if (e.is_cloud) then
+				lightning_time -= 1
+				if (lightning_time <= 0) then
+					lightning_time = 200 - w_attack_speed*25
+					cloud.sprite = 37
+					attack_lightning()
+				elseif (lightning_time <= 55) then
+					cloud.sprite = 39
+				end
+	--		end
+	--	end
 	end
 end
 
-
 function attack_lightning()
-	--	sfx(18)
-		local x1 = cloud.pos.x
-		local y1 = cloud.pos.y
-		
-		for i=1,3 do
+	--for e in all(enemy_bullets) do
+	--	if (e.is_cloud) then
+			local x1 = cloud.pos.x
+			local y1 = cloud.pos.y
+			
+			for i=1,3 do
 				add_timed_anim(55+flr(rnd(4)),x1,y1-2+ 8*i, 3,9)
-		end
-		aoe_damage(x1,y1+24, 14+4*w_lightning,6+3*w_damage+4*w_lightning,56)
+			end
+			aoe_damage(x1,y1+24, 10+5*w_lightning,11+3*w_damage+4*w_lightning,56)
+			add_explosion(x1, y1+28,10+5*w_lightning,0,false,false,true, .1)
+	--	end
+	--end
 end
 
 ring_of_fire = 0
@@ -69,10 +77,10 @@ function frost_dash()
 		frost_y = playery
 		
 		for e in all(bugs) do
-			if (dst(frost_x,frost_y,e.pos.x,e.pos.y) < 22) then
+			if (dst(frost_x,frost_y,e.pos.x,e.pos.y) < 28) then
 				e.speed = .01
 			end
 		end
-		add_explosion(frost_x, frost_y,18,0,false,false,true)
+		add_explosion(frost_x, frost_y,24,0,false,false,true)
 	end
 end

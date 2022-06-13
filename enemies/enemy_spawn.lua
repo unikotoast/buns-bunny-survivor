@@ -84,7 +84,6 @@ function kill_enemy(enemy)
 				e.max_speed = e.speed
 				e.bullet_id = enemy.bullet_id
 				e.exploded = true
-				enemy.dmg=1
 				e.aoe=6
 				e.pos=point(enemy.pos.x,enemy.pos.y)
 				add(bugs,e) 

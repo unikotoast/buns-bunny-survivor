@@ -103,23 +103,28 @@ function move_player()
 		--end
 	end
 
-	if(btnp(4) and ((dash_cooldown >= dash_cooldown_max))) then
-		frost_dash()
---		player_focus = min(100, player_focus + 60)
-		player_damaged += 45
-		player_damaged_dash = true
-		dash = true
-		dash_id = rnd()
-		dash_cooldown = 0
-		player_speed=.6
-
-		if (fire_dash) then
-			player_speed*=40
-		else
-			player_speed*=20
-		end
+	if(btnp(4)) then
+			if((dash_cooldown >= dash_cooldown_max)) then
+			frost_dash()
+--			player_focus = min(100, player_focus + 60)
+			player_damaged += 45
+			if (frosty_dash) player_damaged += 45
+			player_damaged_dash = true
+			dash = true
+			dash_id = rnd()
+			dash_cooldown = 0
+			player_speed=.6
 	
-		 sfx(6)
+			if (fire_dash) then
+				player_speed*=40
+			else
+				player_speed*=20
+			end
+		
+			sfx(6)
+		else
+			sfx(25)
+		end
 	end
 
 

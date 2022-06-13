@@ -1,12 +1,6 @@
-
-function decrease_max_hp()
-	playerhp_max -= 1
-	if (playerhp > playerhp_max) playerhp = playerhp_max
-	if (playerhp <= 0) game_lost()
-end
-
 function decrease_max_carrots()
 	p_energy_max -=.5
+	if (p_energy_max < 0) p_energy_max = 0
 end
 
 w_fire_d = {sprite=89, 
@@ -30,24 +24,25 @@ w_reroll = {sprite=108,
 
 ws = {
 
-	{sprite = 52, name = "cARROT bURGER \f2-15% speed", info = "+1 ♥", use = function() 
+	{sprite = 52, name = "cARROT bURGER \f8-15% speed", info = "+1 ♥", use = function() 
 		playeracc -= .006
 		playerhp_max +=1 end},
 
 	{sprite = 74, name = "dAMAGE", info = "up damage", use = function () 
 		w_damage +=1 end},
 
-	{sprite = 76, name = "cARROT pARFAIT \f2-15% speed", info = "+1 carrot", use = function () 
+	{sprite = 76, name = "cARROT pARFAIT \f8-15% speed", info = "+1 carrot", use = function () 
 		playeracc -= .006
 		p_energy_max +=1 end},
 
-	{sprite = 73, name = "cARROT cAKE \f2-30% speed", info = "full heal +1 carrot +1 ♥", use = function () 
+	{sprite = 73, name = "cARROT cAKE \f8-30% speed", info = "full heal +1 carrot +1 ♥", use = function () 
 		playeracc -= .012
 		playerhp_max +=1
 		p_energy_max +=1
 		playerhp = playerhp_max end},
 
 	{sprite = 77, name = "hASTE", info = "up attack and move speed", use = function (self) 
+		w_carrot_cd_max -= 6
 		if (w_attack_speed == 5) del(ws, self)
 		playeracc += .003
 		w_attack_speed +=1 end},
@@ -56,7 +51,7 @@ ws = {
 		w_move_speed += 1
 		dash_cooldown_max -= 20
 		if (w_move_speed == 4) del(ws, self)
-		playeracc += .008 end},
+		playeracc += .009 end},
 
 --{sprite=127, 
 --		name="pEACH oVERLOAD", info="create peaches", use =  function(self) 
@@ -92,9 +87,8 @@ ws = {
 --		end},
 
 {sprite=92, 
-		name="sHURIKENS \f9-0.5 carrot", info="throw shurikens ", use =  function() 
-		decrease_max_carrots()
-		w_carrot_cd_max += 5
+		name="sHURIKENS \f9 -20% attack speed", info="throw shurikens ", use =  function() 
+		w_carrot_cd_max += 10
 	--	carrot_energy +=4
 		w_shuriken += 1
 		end},
@@ -104,7 +98,7 @@ ws = {
 		name="aTTRACTOR", info="pick up range, more bunnies", use =  function() 
 			magnet_area+=8
 			for i=0,30 do
-				bunny(timer+i*35+rnd(30))
+				bunny(timer+i*45+rnd(30))
 			end
 			end},
 
@@ -122,17 +116,16 @@ ws = {
 		if (carrot_splash == 4) del(ws, self) 
 		end},
 {sprite=60, 
-		name="tHUNDER cLOUD \f8-1 ♥", info="summon lightning ", use =  function(self) 
-		decrease_max_hp()
+		name="tHUNDER cLOUD \f8-15% speed", info="summon lightning ", use =  function(self) 
+		playeracc -= .006
 		if (w_lightning == 0) setup_cloud()
 		w_lightning+=1
-		if (w_lightning == 6) del(ws, self) 
 		end},
 
 {sprite=121, 
-		name="rING oF fLAME \f8-1 ♥", info="damage nearby enemies ", use =  function() 
+		name="rING oF fLAME \f8-15% speed", info="damage nearby enemies ", use =  function()  
+		playeracc -= .006
 		ring_of_fire += 1
-		decrease_max_hp()
 		end},
 
 

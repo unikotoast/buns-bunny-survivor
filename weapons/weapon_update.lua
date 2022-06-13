@@ -1,6 +1,6 @@
 energy_cd = 0
 p_energy_timer = 20
-p_energy_timer_max = 40
+p_energy_timer_max = 30
 
 p_energy_regen = 1
 

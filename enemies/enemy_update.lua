@@ -18,7 +18,7 @@ end
 
 function draw_bugs()
 	for e in all(enemy_bullets) do
-		if (e.follow) then
+		if (e.is_cloud) then
 				spr(19,e.pos.x,e.pos.y+26)
 			end
 	end
@@ -99,7 +99,7 @@ function move_enemy_bullets()
 end
 
 function move_e(e)
-	if (not e.follow and e.life_time <= 0) then
+	if (not e.is_cloud and e.life_time <= 0) then
 		if (e.no_collision) then
 			remove_bullet(e)
 		else
@@ -108,13 +108,13 @@ function move_e(e)
 		return
 	end
 
-	if (not e.follow) e.life_time -= 1
+	if (not e.is_cloud) e.life_time -= 1
 
 	if (not e.no_collision and not e.is_swarm) then
 		e.targetx = playerx
 		e.targety = playery
 	end
-	if (e.follow) then
+	if (e.is_cloud) then
 		e.targetx = playerx
 		e.targety = playery - 16
 	end
@@ -125,7 +125,7 @@ function move_e(e)
      e.pos.y+=p.y
        
 
-      if (not e.follow and e.no_collision and e.targetx==e.pos.x and e.targety==e.pos.y) then
+      if (not e.is_cloud and e.no_collision and e.targetx==e.pos.x and e.targety==e.pos.y) then
 		remove_bullet(e)
       end
 
@@ -149,7 +149,7 @@ function move_e(e)
 		e:attack(e)
 	end
 		
-	if not e.follow and dst(playerx,playery,e.pos.x,e.pos.y) < e.aoe then
+	if not e.is_cloud and dst(playerx,playery,e.pos.x,e.pos.y) < e.aoe then
 		if (e.is_bomb or e.skull) then
 			kill_enemy(e)
 		elseif (not e.is_crystal and e.death_item and e.is_bunny) then
@@ -170,7 +170,7 @@ function move_e(e)
 			playerx += (playerx - e.pos.x)/15
 			playery += (playery - e.pos.y)/15
 			if (player_damaged_dash) then
-				deal_damage(e, 1)
+				deal_damage(e, .5)
 			else
 				damage_player(e.dmg)
 			end

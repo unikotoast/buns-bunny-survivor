@@ -1,31 +1,34 @@
 enemy_waves = {}
 enemy_level = 0
-wave_index = 0
+wave_index = 4
 
 function setup_enemy_waves()
 	random_waves()
 end
 
 function random_waves()
-	bats_wave(0, 2, 0)
-	bats_wave(0, 50, 2)
-	for i = 0,4 do
+	bats_wave(0, 70, 2)
+	bunny(30)
+	bats_wave(65, 35,.8)
+	bats_wave(65, 6,0,false,true)
+	crystal_wave(110,1, flr(rnd(2.6)))
+	for i = 0,3 do
 		chick_wave(15+15*i, i)
 	end
-	for j = 0,3 do
-		for i = 0,3+j do
-			bats_wave(200+i*5+j*100, 10, 0,false,true)
-		end
-	end
-	lich_wave(150,1)
-	bats_wave(180, 40, 0,true)
-	bomb_wave(220,6,4)
-	skeletons_wave(280, 12, 0, true)
-	crystal_wave(310, 10)
+	lich_wave(185,1)
+	bats_wave(260, 40, 0,true)
+	bomb_wave(300,6,4)
+	crystal_wave(340, 10)
+
+	--for j = 0,3 do
+	--	for i = 0,3+j do
+	--		bats_wave(200+i*5+j*100, 10, 0,false,true)
+	--	end
+	--end
 	for i = 0,12 do
 		lich_wave(380+i*5, 1)
 	end
-	skeletons_wave(460, 20, 0, true)
+	skeletons_wave(460, 30, 0, true)
 	for i = 0,5 do
 		bats_wave(580, 7, 0,false,true)
 	end
@@ -43,7 +46,7 @@ function random_waves()
 	end
 	
 	wave_shrooms = function (time)
-		mushroom_wave(time, 7+wave_index)
+		mushroom_wave(time, 10+wave_index)
 	end
 	
 	wave_bats_circle = function (time)
@@ -62,12 +65,13 @@ function random_waves()
 	end
 
 local t = 0
-	for i=2,19 do
+	for i=4,19 do
 		t += .5*i
 		wave_index += 1
-		bunny(i*45+rnd(25))
+		skull_wave(i*50+rnd(20))
+		bunny(i*40+rnd(25))
 		crystal_wave((i-1)*50+rnd(30),1, flr(rnd(2.6)))
-		bats_wave(i*60+rnd(60), 10, 0,false,true)
+		bats_wave(i*40+rnd(60), 10+i, 0,false,true)
 
 		bomb_wave(i*60+rnd(30),1)
 

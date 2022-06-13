@@ -1,7 +1,7 @@
 
 function bats_wave(start_time, num, interval, circle, swarm)
 	local speed = .15
-	if (swarm) speed = .9
+	if (swarm) speed = .75
 	return make_wave(
 		function() return {
 		sprite = 9,
@@ -28,9 +28,7 @@ function eye_wave(start_time, num, interval)
 	}  end,
 		start_time,
 		interval,
-		num,
-		circle,
-		swarm
+		num
 	)
 end
 
@@ -93,7 +91,7 @@ function lich_wave(start_time, num)
 		sprite = 46,
 		death_sprite = 210,
 		speed = 0.10, 
-		hp = 100, 
+		hp = 50, 
 		timer = 0,
 		interval = 20,
 		can_attack = true,

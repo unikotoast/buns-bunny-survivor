@@ -74,7 +74,7 @@ end
 
 function draw_choose_window()
 	rectfill(playerx-60,playery-56, playerx+60,playery-4, 7)
-	rectfill(playerx-61,playery-55, playerx+61,playery-5,7)
+--	rectfill(playerx-61,playery-55, playerx+61,playery-5,7)
 
 	draw_weapon_row()
 
@@ -98,8 +98,9 @@ function draw_weapon_row()
 
 	for i=0,3 do
 		local w = random_weapons[i+1]
-		rectfill(playerx-54+30*i,playery-50, playerx-35+30*i,playery-30, 13)
-		rectfill(playerx-55+30*i,playery-49, playerx-34+30*i,playery-31, 13)
+		rectfill(playerx-55+30*i,playery-50, playerx-34+30*i,playery-30, 13)
+		--rectfill(playerx-54+30*i,playery-50, playerx-35+30*i,playery-30, 13)
+		--rectfill(playerx-55+30*i,playery-49, playerx-34+30*i,playery-31, 13)
 		rect(playerx-57+30*i,playery-52, playerx-32+30*i,playery-28, 13)
 		line(playerx-56+30*i,playery-27, playerx-33+30*i,playery-27, 6)
 		spr(w.sprite,playerx-48+30*i,playery-43)

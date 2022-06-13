@@ -59,9 +59,6 @@ function level_up()
     end
     exp = 0
     if (p_energy < p_energy_max) p_energy = p_energy_max
-    if (level % 10 == 0) then
-        playerhp_max +=1
-    end
     dash_cooldown = dash_cooldown_max
 
    -- add_timed_anim(251,playerx-47+(playerhp_max-2)*8,playery+48,3,30)

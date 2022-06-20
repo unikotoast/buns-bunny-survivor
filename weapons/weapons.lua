@@ -51,7 +51,7 @@ ws = {
 		w_move_speed += 1
 		dash_cooldown_max -= 20
 		if (w_move_speed == 4) del(ws, self)
-		playeracc += .009 end},
+		playeracc += .007 end},
 
 --{sprite=127, 
 --		name="pEACH oVERLOAD", info="create peaches", use =  function(self) 
@@ -123,8 +123,8 @@ ws = {
 		end},
 
 {sprite=121, 
-		name="rING oF fLAME \f8-15% speed", info="damage nearby enemies ", use =  function()  
-		playeracc -= .006
+		name="rING oF fLAME \f8-20% speed", info="damage nearby enemies ", use =  function()  
+		playeracc -= .009
 		ring_of_fire += 1
 		end},
 

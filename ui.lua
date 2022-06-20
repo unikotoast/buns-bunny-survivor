@@ -106,7 +106,7 @@ function draw_weapon_row()
 		spr(w.sprite,playerx-48+30*i,playery-43)
 
 	end
-	rect(playerx-67+30*selected_upgrade+10,playery-52, playerx-32+30*selected_upgrade,playery-28, 14)
+	rect(playerx-67+30*selected_upgrade+10,playery-52, playerx-32+30*selected_upgrade,playery-28, 8)
  		print(selected_item.name,playerx-56,playery-20,0)
 	if (selected_item.info) print(selected_item.info,playerx-56,playery-12,13)
  		
@@ -136,7 +136,7 @@ function choose_weapon_buttons()
 			player_damaged_dash = true
 			show_choose_window = false
 			show_lvlup = false
-			
+			selected_upgrade = 0
 			selected_item:use()
 			if (selected_item.lvl)then
 				selected_item.lvl += 1

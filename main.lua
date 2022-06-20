@@ -73,8 +73,6 @@ function update_timer()
 	if (timer_frames == 60) then
 		timer_frames = 0
 		timer += 1
-		if (playerhp > 100) playerhp -= min(2.5, playerhp - 100)
-			
  	end
  	enemy_level = flr(timer / 30)
 end

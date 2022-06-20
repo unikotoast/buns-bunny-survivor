@@ -1,4 +1,4 @@
-# Buns: bunny-survivor 1.6
+# Buns: bunny-survivor 1.7
 
 Source code for Pico-8 game https://unikotoast.itch.io/buns-bunny-survivor
 

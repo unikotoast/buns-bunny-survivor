@@ -53,9 +53,9 @@ ring_of_fire_tick = 0
 function ring_fire_damage()
 	if (ring_of_fire > 0) then
 		ring_of_fire_tick+=1
-		if (ring_of_fire_tick >= 10-w_attack_speed) then
+		if (ring_of_fire_tick >= 16-w_attack_speed) then
 			ring_of_fire_tick = 0
-			aoe_damage(playerx,playery, 16 + 5* ring_of_fire,.9+w_damage/3+ring_of_fire/2,118)
+			aoe_damage(playerx,playery, 20 + 3* ring_of_fire,.9+w_damage/3+ring_of_fire/2,118)
 		end
 	end
 

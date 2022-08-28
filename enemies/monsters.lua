@@ -3,11 +3,14 @@ function bats_wave(start_time, num, interval, circle, swarm)
 	local speed = .15
 	if (swarm) speed = .75
 	return make_wave(
-		function() return {
+		function() 
+		local hp = 10
+		if (timer > 50) hp = 15
+		return {
 		sprite = 9,
 			death_sprite = 70,
 			speed = speed, 
-			hp = 15,
+			hp = hp,
 			draw_black = true
 	}  end,
 		start_time,
@@ -110,12 +113,13 @@ function demon_wave(start_time)
 		function() return {
 		sprite = -1,
 		death_sprite = 244,
-		speed = 0.1, 
+		speed = 0.14, 
 		hp = 1900, 
 		sx = 64,
 		sy = 64,
 		sw = 19,
 		sh = 17,
+		boss = true,
 		next_sx = 19,
 		red_attack = true,
 		can_attack = true,

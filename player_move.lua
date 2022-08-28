@@ -54,15 +54,11 @@ function move_player()
 		is_moving = true
 		playerflip = true
 		playerang = .5
-		if (flr(playerx) % 8 == 0) then
-		end
 	end
 	if(btn(➡️)) then
 		is_moving = true
 		playerflip = false
 		playerang = 1
-		if (flr(playerx) % 8 == 0) then
-		end
 	end
 	if(btn(⬆️)) then
 		is_moving = true
@@ -72,8 +68,6 @@ function move_player()
 			playerang = .125
 		else
 			playerang = .25
-		end
-		if (flr(playery) % 8 == 0) then
 		end
 	end
 	if(btn(⬇️)) then
@@ -85,18 +79,16 @@ function move_player()
 		else
 			playerang = .75
 		end
-		if (flr(playery) % 8 == 0) then
-		end
 	end
 	end
 	if (is_moving) then
 		--if (player_focus < 100) then
 		--	player_focus += 1
 		--end
-		player_speed += playeracc
+		player_speed += max(playeracc, .01)
 	elseif (player_push > 0) then
 		player_push -= 1
-		player_speed -= playeracc
+		player_speed -= max(playeracc, .01)
 		if (player_push<=0)player_push=0
 		--if (player_focus > 0) then
 		--	player_focus -= 1

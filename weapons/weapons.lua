@@ -35,11 +35,11 @@ ws = {
 		playeracc -= .006
 		p_energy_max +=1 end},
 
-	{sprite = 73, name = "cARROT cAKE \f8-30% speed", info = "full heal +1 carrot +1 ♥", use = function () 
-		playeracc -= .012
-		playerhp_max +=1
-		p_energy_max +=1
-		playerhp = playerhp_max end},
+--{sprite = 73, name = "cARROT cAKE \f8-30% speed", info = "full heal +1 carrot +1 ♥", use = function () 
+--	playeracc -= .012
+--	playerhp_max +=1
+--	p_energy_max +=1
+--	playerhp = playerhp_max end},
 
 	{sprite = 77, name = "hASTE", info = "up attack and move speed", use = function (self) 
 		w_carrot_cd_max -= 6
@@ -108,7 +108,7 @@ ws = {
 --		w_arcane = true
 --	end},
 
-{sprite=219, 
+{sprite=85, 
 		name="sPLASH \f9 -30% attack speed", info="carrots do splash damage ", use =  function(self) 
 		--decrease_max_carrots()
 		carrot_splash += 1
@@ -124,7 +124,7 @@ ws = {
 
 {sprite=121, 
 		name="rING oF fLAME \f8-20% speed", info="damage nearby enemies ", use =  function()  
-		playeracc -= .009
+		playeracc -= .011
 		ring_of_fire += 1
 		end},
 
@@ -136,12 +136,6 @@ ws = {
 --		end}
 --
 --}
-{sprite=93, 
-		name="gOLDEN cARROT \f2-20% speed", info="+75% carrot regen", use =  function(self) 
-		p_energy_timer_max -= 20
-		playeracc -= .009
-		del(ws, self) 
-		end},
 
 w_fire_d,
 

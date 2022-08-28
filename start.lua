@@ -7,6 +7,7 @@ function start_setup()
 end
 
 function start_game()
+	music(1,0,2)
 	starting = true
 end
 
@@ -14,15 +15,15 @@ function draw_manual()
 
 	local ay = -120 + starting_time
 	
-	print("❎ x \f7shoot",-62,6+ay,14)
-	print("🅾️ z \f7dash",-62,14+ay,14)
+	?"❎ x \f7shoot",-62,6+ay,14
+	?"🅾️ z \f7dash",-62,14+ay,14
 	
 	
-	text_bg("start",-6,44+ay,6)
+	?"\f0\#7start",-6,44+ay,6
 	
-	print("⬆️",44,2+ay,14)
-	print("⬅️⬇️➡️",36,8+ay,14)
-	print("move",40,16+ay,7)
+	?"⬆️",44,2+ay,14
+	?"⬅️⬇️➡️",36,8+ay,14
+	?"move",40,16+ay,7
 
 
 
@@ -38,9 +39,9 @@ function draw_manual()
 --
 	--end
 
-print("bunny survivor",-26,-36+ay,14)
-print("BY unikotoast",-62, 56+ay,6)
-print("1.7",52, 56+ay,6)
+?"bunny survivor",-26,-36+ay,14
+?"BY unikotoast",-62, 56+ay,6
+?"1.8",52, 56+ay,6
     -- pset(-26,-40+ay,8)
     -- pset(-28,-40+ay,8)
 

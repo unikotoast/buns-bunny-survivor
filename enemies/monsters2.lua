@@ -108,13 +108,14 @@ function mushroom_wave(start_time, num)
 		sprite = 157,
 		death_sprite = 61,
 		speed = 0.10, 
-		hp = 30+enemy_level*9,
+		hp = 30+enemy_level*5,
 		spawn_count = 4,
 		spawn = mushroom_small
 	}  end,
 		start_time,
 		0,
-		num
+		num,
+		true
 	)
 end
 

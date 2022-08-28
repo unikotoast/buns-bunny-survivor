@@ -8,10 +8,12 @@ function _init()
 	bullet_homing ={}
 	enemies = {}
 	start_setup()
+	music(5)
 end
 
 function _update60()
 	if ( not show_lvlup) then
+		damage_boost_timer()
 		obj.x = playerx
 		obj.y = playery+4
 		enemy_update()

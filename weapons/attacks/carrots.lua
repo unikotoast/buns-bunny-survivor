@@ -12,11 +12,23 @@ cloud_attack = false
 drill_lvl = 1
 
 carrot_damage = 10
+carrot_damage_boost = 0
+carrot_damage_boost_timer = 0
 
 w_carrot_cd = 0
 w_carrot_cd_max = 30
 
 bullet_carrots ={}
+
+function damage_boost_timer()
+	if (carrot_damage_boost_timer > 0) then
+		add_particle(playerx+rnd(8),playery+rnd(8), rnd({9,10}), 15,.1)
+		carrot_damage_boost = 40
+		carrot_damage_boost_timer -= 1
+	else
+		carrot_damage_boost = 0
+	end
+end
 
 function throw_knife()
 	if (w_carrot_cd == 0  and p_energy >= .5) then
@@ -107,7 +119,7 @@ function make_bullet(angle,shuriken,x,y,id,pierce)
 				pb = pb, 
 				ang = angle,
 				sprite = shuriken or sprite , 
-				dmg = dmg, 
+				dmg = dmg+carrot_damage_boost, 
 				speed = speed, 
 				duration=36, 
 				is_flipx = (angle >= .25 and angle <=.75), 
@@ -151,7 +163,7 @@ function move_bullets()
 
 			if (b.is_carrot and carrot_splash > 0) then
 				add_explosion(b.x,b.y,4 + carrot_splash*3,2)
-				aoe_damage(b.x,b.y, 12 + carrot_splash*3,carrot_damage/4+carrot_splash*3,118)
+				aoe_damage(b.x,b.y, 12 + carrot_splash*3,carrot_damage_boost+(carrot_damage/4+carrot_splash*4),118)
 			end
 
 		end

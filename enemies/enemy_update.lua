@@ -108,7 +108,7 @@ function move_e(e)
 		return
 	end
 
-	if (not e.is_cloud) e.life_time -= 1
+	if (not e.is_cloud and not e.boss) e.life_time -= 1
 
 	if (not e.no_collision and not e.is_swarm) then
 		e.targetx = playerx

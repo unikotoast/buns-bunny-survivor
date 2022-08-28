@@ -7,7 +7,7 @@ draw_lvlup_txt = false
 gems = {}
 
 function make_gem(x,y)
-    local gem = {sprite=32,x=x,y=y,picked=false,anim = 90,time = 4000, frame = 0, speed=2,dx=0, dy=0, }
+    local gem = {sprite=32,x=x,y=y,picked=false,anim = 90,time = 8000, frame = 0, speed=2,dx=0, dy=0, }
     add(gems,gem)
 end
 

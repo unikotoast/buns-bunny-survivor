@@ -1,5 +1,16 @@
 items = {}
 
+function use_damage_boost(self) 
+   	sfx(14)
+   	carrot_damage_boost_timer = 500
+	delete_item(self)
+	use_carrot()
+end
+
+function make_damage_boost(x,y) 
+	make_item(218,x,y, use_damage_boost)
+end
+
 function use_peach(self) 
    			sfx(13)
 	player_damaged += 30
@@ -17,8 +28,6 @@ function use_carrot(self)
 	if (self) then
    		sfx(14)
 		delete_item(self)
-	else
-		p_energy += 2
 	end
 end
 

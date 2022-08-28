@@ -89,10 +89,14 @@ function kill_enemy(enemy)
 				add(bugs,e) 
 			end
 		else
-			if (rnd() < .95) then
+			if (rnd() < .9) then
 				make_gem(enemy.pos.x,enemy.pos.y)
 			else
-				make_carrot(enemy.pos.x,enemy.pos.y)
+				if (rnd() < .8) then
+					make_carrot(enemy.pos.x,enemy.pos.y)
+				else
+					make_damage_boost(enemy.pos.x,enemy.pos.y)
+				end
 			end
 		end
 	end

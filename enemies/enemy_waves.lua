@@ -7,11 +7,11 @@ function setup_enemy_waves()
 end
 
 function random_waves()
-	bats_wave(0, 70, 2)
-	bunny(30)
+	bats_wave(0, 90, 1.5)
 	bats_wave(65, 35,.8)
 	bats_wave(65, 6,0,false,true)
 	crystal_wave(110,1, flr(rnd(2.6)))
+	bomb_wave(120,1)
 	for i = 0,3 do
 		chick_wave(15+15*i, i)
 	end
@@ -36,6 +36,7 @@ function random_waves()
 		bats_wave(590+i*7, 5+i*2, 0,false,true)
 	end
 	demon_wave(590)
+	skull_wave(600)
 	
 	wave_chickens = function (time)
 		chick_wave(time,20+wave_index*2,1)

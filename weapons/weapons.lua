@@ -24,9 +24,10 @@ w_reroll = {sprite=108,
 
 ws = {
 
-	{sprite = 52, name = "cARROT bURGER \f8-15% speed", info = "+1 ♥", use = function() 
+	{sprite = 52, name = "cARROT bURGER \f8-15% speed", info = "+1 ♥ and heal", use = function() 
 		playeracc -= .006
-		playerhp_max +=1 end},
+		playerhp_max +=1
+		playerhp = playerhp_max end},
 
 	{sprite = 74, name = "dAMAGE", info = "up damage", use = function () 
 		w_damage +=1 end},
@@ -88,7 +89,7 @@ ws = {
 
 {sprite=92, 
 		name="sHURIKENS \f9 -20% attack speed", info="throw shurikens ", use =  function() 
-		w_carrot_cd_max += 10
+		w_carrot_cd_max += 8
 	--	carrot_energy +=4
 		w_shuriken += 1
 		end},

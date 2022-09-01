@@ -61,6 +61,10 @@ function _draw()
 
 	draw_items()
 	draw_text()
+	if (timer >= 580 and not boss_start) then
+		boss_start = true
+		music(32)
+	end
 --print("kb"..stat(0),(playerx)-64,(playery)-57,2)
 --print("∧"..flr(100*stat(1)).."%",(playerx)-64,(playery)-50,2)
 --print(""..playerhp,playerx+42,playery-52,7)
@@ -82,7 +86,7 @@ end
 function draw_timer()
 	local minutes = flr(timer / 60)
 	local seconds = flr(timer  % 60)
- 	print(minutes..":"..seconds,(playerx-2),(playery)-54,6)
+ 	?minutes..":"..seconds,(playerx-2),(playery)-54,6
 end
 
 

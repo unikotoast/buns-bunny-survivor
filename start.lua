@@ -7,7 +7,7 @@ function start_setup()
 end
 
 function start_game()
-	music(1,0,2)
+	music(6)
 	starting = true
 end
 
@@ -40,8 +40,7 @@ function draw_manual()
 	--end
 
 ?"bunny survivor",-26,-36+ay,14
-?"BY unikotoast",-62, 56+ay,6
-?"1.8",52, 56+ay,6
+?"BY unikotoast\n1.9",-64, 48+ay,6
     -- pset(-26,-40+ay,8)
     -- pset(-28,-40+ay,8)
 

@@ -22,7 +22,7 @@ bullet_carrots ={}
 
 function damage_boost_timer()
 	if (carrot_damage_boost_timer > 0) then
-		add_particle(playerx+rnd(8),playery+rnd(8), rnd({9,10}), 15,.1)
+		add_particle(playerx+rnd(8),playery+rnd(8), 10, 15,.1)
 		carrot_damage_boost = 40
 		carrot_damage_boost_timer -= 1
 	else
@@ -111,7 +111,7 @@ function make_bullet(angle,shuriken,x,y,id,pierce)
 
 		local dmg = carrot_damage+5*w_damage
 
-		if (shuriken) dmg = 5+w_damage+w_shuriken
+		if (shuriken) dmg = 8+w_damage+w_shuriken*2
 
 			local k = {
 				x = sx, 

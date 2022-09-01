@@ -66,7 +66,7 @@ text_bg(txt.."\n\nsurvived: "..minutes.." min. "..seconds.." sec.\n\nkills: "..k
 				item_x = -108
 			end
 			spr(w.sprite,playerx-62+i*12+item_x,playery+34 + item_y)
-			print(""..w.lvl,playerx-56+i*12+item_x ,playery+43 + item_y,15)
+			?""..w.lvl,playerx-56+i*12+item_x ,playery+43 + item_y,15
 			i+=1
 		end
 	end
@@ -107,8 +107,8 @@ function draw_weapon_row()
 
 	end
 	rect(playerx-67+30*selected_upgrade+10,playery-52, playerx-32+30*selected_upgrade,playery-28, 8)
- 		print(selected_item.name,playerx-56,playery-20,0)
-	if (selected_item.info) print(selected_item.info,playerx-56,playery-12,13)
+ 	?selected_item.name,playerx-56,playery-20,0
+	if (selected_item.info) ?selected_item.info,playerx-56,playery-12,13
  		
 end
 
@@ -205,8 +205,8 @@ function draw_player_bars()
 	rectfill(playerx-57,playery-61, playerx+57,playery-59, 1)
 	rect(playerx-56,playery-60, playerx-56+exp_to_exp,playery-60, 14)
    	if (show_lvlup and not game_over) then
-   		print("level up",playerx-14,playery-63,7)
+   		?"level up",playerx-14,playery-63,7
    	else
-   		print("LVL"..level,playerx+44,playery-63,7)
+   		?"LVL"..level,playerx+44,playery-63,7
    	end
 end

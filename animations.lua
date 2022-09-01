@@ -81,7 +81,7 @@ function draw_text()
 	for t in all(texts) do
 		t.death -= 1
 		t.y-=.15
-		print(t.text, t.x,t.y,t.color)
+		?t.text, t.x,t.y,t.color
 		if (t.death <= 0 ) del(texts, t)
 	end
 end
